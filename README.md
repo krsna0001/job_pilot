@@ -2,7 +2,16 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+Before starting the app, create a local environment file named `.env.local` with your InsForge public runtime values. The login flow needs these values at runtime to connect to InsForge:
+
+```env
+NEXT_PUBLIC_INSFORGE_URL=https://59m666gk.ap-southeast.insforge.app
+NEXT_PUBLIC_INSFORGE_ANON_KEY=your-insforge-anon-key
+```
+
+A sample is already available in `.env.example`.
+
+Then run the development server:
 
 ```bash
 npm run dev
