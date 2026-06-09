@@ -38,3 +38,7 @@ Last updated: 2026-06-09
 ## Next session starts with
 
 1. Phase 5: Post-Launch features (Realtime notifications, Email alerts, Payments/Subscriptions) if requested by the user.
+
+## Open questions
+
+- None.
