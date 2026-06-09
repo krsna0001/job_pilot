@@ -1,4 +1,4 @@
-# Memory — Session 23: Vercel Deployment via CLI
+# Memory — Session 23: Vercel Deployment via CLI & Performance Audit
 
 Last updated: 2026-06-09
 
@@ -9,6 +9,11 @@ Last updated: 2026-06-09
   - Successfully triggered the deployment `aa59e21a-79c6-4c0b-8147-c3ddd09b21f4` on Vercel.
   - The project is fully compiled, ready, and live at: `https://59m666gk.insforge.site`
 - **Edge Browser Integration** — Launched the live URL directly in the user's Microsoft Edge browser using `start msedge`.
+- **Performance Audit** — Performed a build and code-level performance audit of the application (Feature 4.5):
+  - Verified bundle sizes are highly optimized (~81KB shared First Load JS, ~200KB total for all protected routes).
+  - Validated that `jspdf` and `dom-to-image-more` are dynamically imported to prevent bundle bloat on initial page load.
+  - Confirmed `pdfjs-dist` is excluded from browser bundles.
+  - Created walkthrough artifact detailing changes.
 
 ## Decisions made
 
@@ -28,8 +33,8 @@ Last updated: 2026-06-09
   - 4.2 Loading states ✅
   - 4.3 Responsive audit ✅
   - 4.4 Vercel deploy ✅
-  - 4.5 Performance audit ⏳ (next priority)
+  - 4.5 Performance audit ✅
 
 ## Next session starts with
 
-1. Performance audit (Feature 4.5) — check bundle size, image optimization, and Lighthouse score/web vitals.
+1. Phase 5: Post-Launch features (Realtime notifications, Email alerts, Payments/Subscriptions) if requested by the user.

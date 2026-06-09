@@ -48,7 +48,7 @@
 | 3.3 | Company dossiers | ✅ | Session 15 | AI-generated company research dossiers via OpenRouter, cached in database, premium accordion layout in saved-jobs page |
 | 3.4 | Profile enrichment | ✅ | Session 9 / 13 / 15 | Server action downloads resume, extracts text via pdf-parse v2, sends to GPT-4o-mini for structured extraction, upserts to profile. Session 15: switched to gpt-4o-mini for 2x faster extraction, reduced prompt tokens 60%, made agent logging fire-and-forget, compacted UI to single centered column |
 
-## Phase 4: Polish & Deploy ⏳
+## Phase 4: Polish & Deploy ✅
 
 | # | Feature | Status | Notes |
 |---|---------|--------|-------|
@@ -56,7 +56,7 @@
 | 4.2 | Loading states | ✅ | Sessions 15-21 | Skeleton loaders on all routes (find-jobs, saved-jobs, dashboard, profile) with animate-pulse + matched skeleton shapes |
 | 4.3 | Responsive audit | ✅ | Session 22 | Mobile hamburger menu with drawer in AuthenticatedHeader, responsive padding (px-4 sm:px-6, py-8 sm:py-16) across all pages, SavedJobsList cards stack on mobile, dashboard grid 2-col, profile loading skeleton fixed (removed stale ConnectedAccounts block) |
 | 4.4 | Vercel deploy | ✅ | Session 23 | Live at https://59m666gk.insforge.site via InsForge deployments |
-| 4.5 | Performance audit | ⏳ | |
+| 4.5 | Performance audit | ✅ | Session 23 | Build output JS size is ~81KB (shared) + dynamic import of heavy PDF libraries + external pdfjs‑dist |
 | 4.6 | Resume preview upload & PDF download | ✅ | Session 20 | SSR "Node is not defined" crash fixed via dynamic import of dom-to-image-more and jspdf inside click handler. pixelRatio lowered to 2 for better text alignment. Upload persists via API route to profiles.resume_preview_text column. Removed unused html2canvas dep. |
 | 4.7 | Middleware logout fix | ✅ | Session 16 | Updated NextResponse handling to prevent logout on hot reload |
 | 4.8 | Overhauled Find Jobs UI (Feature 09) | ✅ | Session 21 | Upgraded page layout with a premium hero search card, popular search tags, filters sidebar (keyword search, Job Type, Experience, Work Mode, Min Salary slider, Clear All), sorting dropdown, and client-side logic. Added edge function mock jobs fallback. |
