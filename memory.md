@@ -1,71 +1,48 @@
-# Memory — Find Jobs Backend + Full Context Setup
+# Memory — Session 22: CSS cache fix + Responsive audit
 
-Last updated: 2026-06-08 (Session 3)
+Last updated: 2026-06-09
 
 ## What was built
 
-### Context files (created)
-- All 9 files in `context/` directory (project-overview, architecture, ui-tokens, ui-rules, ui-registry, code-standards, library-docs, build-plan, progress-tracker)
-
-### Database — 5 tables total
-- `saved_jobs` — user bookmarks with status tracking
-- `profiles` — extended user profile (headline, bio, skills JSONB, experience JSONB, education JSONB, resume, github, linkedin)
-- `jobs` — master job catalog (deduplicated by source_id), with AI enrichment columns (match_score, skills_breakdown JSONB, company_dossier JSONB)
-- `agent_runs` — AI agent execution sessions (agent_name, status, input/output JSONB, duration_ms, error_message)
-- `agent_logs` — step-by-step audit trail for agent executions (run_id FK, step_name, level debug/info/warn/error, message, metadata JSONB, duration_ms)
-- All tables have RLS, indexes, and FK references to auth.users where appropriate
-
-### Edge function
-- `functions/jobs-search.ts` — Adzuna API proxy, accepts GET/POST with what/where/page/country/results_per_page. Reads ADZUNA_APP_ID and ADZUNA_API_KEY from Deno env. Deployed as `jobs-search` at `https://59m666gk.functions.insforge.app`
-
-### Find Jobs UI
-- `app/find-jobs/components/JobSearchForm.tsx` — search form with title + location inputs
-- `app/find-jobs/components/JobCard.tsx` — job result card with save button
-- `app/find-jobs/components/JobResults.tsx` — search state, edge function calls, pagination, save/unsave with optimistic UI
-- `app/find-jobs/page.tsx` — rewritten from placeholder
-
-### Dashboard update
-- Shows saved job count + recent 5 saved jobs with status badges
-
-### PostHog events
-- `job_search`, `job_saved`, `job_unsaved` — custom events firing client-side
+- **CSS cache fix** — deleted `.next` and restarted dev server (recurring fix, documented in AGENTS.md)
+- **Responsive AuthenticatedHeader** — rewrote `app/components/AuthenticatedHeader.tsx` as a `'use client'` component with:
+  - Desktop nav (`hidden md:flex`) showing all 4 nav items
+  - Hamburger button (`md:hidden`) with open/close icon toggle
+  - Mobile drawer with active-route highlighting (bg-accent-light) and auto-close on link click
+  - User email/name hidden on xs (`hidden sm:flex`) to reduce clutter
+- **Responsive padding fixes** — applied `px-4 sm:px-6` and `py-8 sm:py-16` across all page containers: dashboard, profile, saved-jobs, find-jobs
+- **Responsive card fixes** — h1 tags now `text-3xl sm:text-4xl`, welcome cards `p-6 sm:p-10`
+- **Dashboard grid** — changed from `sm:grid-cols-3` (broken with 2 cards) to `sm:grid-cols-2`
+- **Recent jobs items** — stack vertically on mobile (`flex-col sm:flex-row`)
+- **SavedJobsList.tsx** — job card header stacks on mobile (`flex-col sm:flex-row`), action buttons wrap
+- **Profile loading.tsx** — removed stale "Connected Accounts" skeleton section (component was removed in Session 21)
+- **Progress tracker** — marked 4.1, 4.2, 4.3 as ✅ complete
 
 ## Decisions made
 
-- **InsForge CLI integration**: Authenticated with user API key, project linked
-- **Functions directory excluded from tsconfig**: Edge functions use Deno (not Node/Next.js), so `functions/` is excluded from Next.js build
-- **`saved_jobs` job_data stored as JSONB**: Full Adzuna job payload is stored so the saved job card can render without re-fetching. JSONB also supports future queries and indexing
-- **PostHog wired but InsForge dashboard connection pending**: The `posthog-js` SDK is in place and capturing events. The InsForge dashboard side needs browser OAuth authorization (CLI is polling for it)
+- `AuthenticatedHeader` now `'use client'` — needed for useState (mobile menu) and usePathname (active nav). This is fine since it's a layout shell, not data-fetching.
+- Inlined navItems directly into AuthenticatedHeader (was previously in separate Navbar.tsx). Navbar.tsx still exists but is no longer imported by AuthenticatedHeader.
 
 ## Problems solved
 
-- Edge function deploy required delete + recreate for code updates (update via deploy slug failed with "already exists")
-- `functions/` directory caused TypeScript compilation errors (Deno globals in Next.js) — excluded in tsconfig.json
-- SDK `.filter()` method didn't exist for JSONB queries — switched to `.eq('job_data->>id', jobId)`
+- **Styles not loading** — stale `.next` cache. Fix: `Remove-Item -Recurse -Force ".next"` then `npm run dev`.
 
 ## Current state
 
-- Build: clean (0 errors)
-- `saved_jobs` table: created, RLS applied, verified
-- Edge function: deployed, active
-- Find Jobs page: search form, results with pagination, save/unsave working
-- Dashboard: shows saved jobs count + recent entries
-- PostHog: client-side events firing. InsForge dashboard connection still pending (open the browser URL that was printed)
-- Adzuna credentials: placeholder secrets stored (need real keys)
-- PostHog InsForge dashboard integration: needs browser OAuth completion
+- Dev server running on `http://localhost:3000`
+- Phase 4 status:
+  - 4.1 Error boundaries ✅
+  - 4.2 Loading states ✅
+  - 4.3 Responsive audit ✅
+  - 4.4 Vercel deploy ⏳ (next priority)
+  - 4.5 Performance audit ⏳
 
 ## Next session starts with
 
-1. **Set Adzuna API credentials** — sign up at developer.adzuna.com, then:
-   - `npx @insforge/cli secrets update ADZUNA_APP_ID --value <app_id>`
-   - `npx @insforge/cli secrets update ADZUNA_API_KEY --value <api_key>`
-2. **Complete PostHog OAuth** in browser (URL was printed by `posthog setup`)
-3. **Begin Phase 3: AI features** — start with `npx @insforge/cli ai setup` for OpenRouter
-4. **Build job status management UI** — list saved jobs with status filters
+1. Deploy to Vercel via InsForge deployments (Feature 4.4)
+2. Then performance audit (Feature 4.5) — check bundle size, image optimization, lighthouse score
 
 ## Open questions
 
-- Adzuna API credentials needed
-- PostHog browser OAuth not completed
-- Job status management page not built
-- OpenRouter key not configured for AI features
+- Is Navbar.tsx still needed, or can it be deleted? It's no longer imported anywhere after this session.
+- What environment variables need to be set on Vercel? (ADZUNA keys, InsForge keys, OpenRouter key, PostHog key)

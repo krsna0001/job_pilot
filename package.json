@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@insforge/sdk": "^1.3.1",
+    "dom-to-image-more": "^3.7.2",
+    "jspdf": "^4.2.1",
     "next": "^13.5.6",
+    "openai": "^6.42.0",
+    "pdfjs-dist": "^5.4.296",
     "posthog-js": "^1.382.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

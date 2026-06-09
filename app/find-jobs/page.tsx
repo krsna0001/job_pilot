@@ -1,28 +1,63 @@
 import { createInsforgeServer } from "../../lib/insforge-server";
 import AuthenticatedHeader from "../components/AuthenticatedHeader";
-import JobResults from "./components/JobResults";
+import SearchDashboard from "./components/SearchDashboard";
 
 export default async function FindJobsPage() {
   const insforge = await createInsforgeServer();
-  const { data } = await insforge.auth.getCurrentUser();
+  const { data, error } = await insforge.auth.getCurrentUser();
   const user = data?.user;
+
+  let savedCount = 0;
+  let statusCounts = { saved: 0, applied: 0, interviewing: 0 };
+  let initialSavedIds: string[] = [];
+  let initialProfileLocations: string[] = [];
+
+  if (user) {
+    const { data: jobs } = await insforge.database
+      .from("saved_jobs")
+      .select("job_data, status")
+      .eq("user_id", user.id);
+
+    if (jobs) {
+      savedCount = jobs.length;
+      initialSavedIds = jobs.map((j: { job_data: { id: string } }) => j.job_data.id);
+      statusCounts = {
+        saved: jobs.filter((j: { status?: string }) => !j.status || j.status === "saved").length,
+        applied: jobs.filter((j: { status?: string }) => j.status === "applied").length,
+        interviewing: jobs.filter((j: { status?: string }) => j.status === "interviewing").length,
+      };
+    }
+
+    const { data: profile } = await insforge.database
+      .from("profiles")
+      .select("job_preferences")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (profile && profile.job_preferences) {
+      const prefs = profile.job_preferences as { locations?: string[] };
+      if (Array.isArray(prefs.locations)) {
+        initialProfileLocations = prefs.locations;
+      }
+    }
+  }
+
+  if (error) {
+    console.warn("InsForge auth getCurrentUser error:", error);
+  }
 
   return (
     <>
       <AuthenticatedHeader email={user?.email} name={user?.profile?.name} />
       <main className="min-h-screen bg-background text-text-primary">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <div className="mb-8 rounded-[2rem] border border-border bg-surface p-10 shadow-sm">
-            <p className="text-xs uppercase tracking-[0.3em] text-accent">Protected path: /find-jobs</p>
-            <h1 className="mt-3 text-4xl font-semibold text-text-darkest">Find Jobs</h1>
-            <p className="mt-3 text-base text-text-secondary">
-              {user ? `Searching as ${user.email}` : "Sign in to search jobs"}
-            </p>
-          </div>
-
-          <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm">
-            <JobResults />
-          </div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-12">
+          <SearchDashboard
+            user={user}
+            initialSavedCount={savedCount}
+            initialStatusCounts={statusCounts}
+            initialSavedIds={initialSavedIds}
+            initialProfileLocations={initialProfileLocations}
+          />
         </div>
       </main>
     </>

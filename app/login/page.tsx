@@ -5,25 +5,38 @@ import { createInsforgeServer } from "../../lib/insforge-server";
 import LoginCard from "./LoginCard";
 
 // Public path: /login
-export default async function LoginPage() {
-  const insforge = await createInsforgeServer();
-  const { data, error } = await insforge.auth.getCurrentUser();
+export default async function LoginPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+  let checkError: string | null = null;
 
-  if (error) {
-    console.warn("InsForge auth getCurrentUser error:", error);
+  // If an error query param is present (e.g., from OAuth failures), display it
+  if (searchParams?.error) {
+    checkError = Array.isArray(searchParams.error) ? searchParams.error[0] : searchParams.error;
   }
 
-  if (data?.user) {
-    redirect("/profile");
+  try {
+    const insforge = await createInsforgeServer();
+    const { data, error } = await insforge.auth.getCurrentUser();
+
+    if (error) {
+      // Auth check failed – user likely not logged in; do not treat as page error
+      console.warn("InsForge auth getCurrentUser error:", error);
+    }
+
+    if (data?.user) {
+      redirect("/dashboard");
+    }
+  } catch (e) {
+    // Preserve existing catch handling for unexpected failures
+    console.error("Login page auth check failed:", e);
   }
 
   return (
     <main className="min-h-screen bg-background text-text-primary">
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-6 py-12">
+      <div className="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-12">
         <header className="mb-10 flex items-center justify-between gap-4 border-b border-border pb-6">
           <Link href="/" className="flex items-center gap-3 text-text-darkest transition hover:text-accent">
             <div className="relative h-11 w-11 overflow-hidden rounded-2xl bg-accent text-accent-foreground">
-              <Image src="/logo.png" alt="JobPilot logo" fill className="object-contain scale-75" sizes="44px" />
+              <Image src="/logo.png" alt="JobPilot logo" fill className="object-cover object-left" sizes="44px" />
             </div>
             <span className="text-base font-semibold">JobPilot</span>
           </Link>
@@ -34,6 +47,12 @@ export default async function LoginPage() {
             Back to homepage
           </Link>
         </header>
+
+        {checkError && (
+          <div className="mb-8 rounded-[1.75rem] border border-error/20 bg-error/10 p-5 text-sm text-error">
+            {checkError}
+          </div>
+        )}
 
         <section className="relative overflow-hidden rounded-[2rem] border border-border bg-surface p-10 shadow-xl sm:p-12">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-accent-light/80 blur-3xl" />

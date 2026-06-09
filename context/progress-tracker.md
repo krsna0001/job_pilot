@@ -1,8 +1,8 @@
 # Progress Tracker — JobPilot
 
-**Current Phase:** Phase 2 — Job Search
+**Current Phase:** Phase 3 — AI Features
 
-**Last updated:** 2026-06-08 (Session 3)
+**Last updated:** 2026-06-09 (Session 22)
 
 ---
 
@@ -33,28 +33,33 @@
 | 2.9 | `agent_runs` table | ✅ | Session 3 | AI agent execution tracking |
 | 2.10 | `agent_logs` table | ✅ | Session 3 | Step-by-step agent audit trail |
 | 2.11 | Resumes storage bucket | ✅ | Session 3 | `resumes` bucket with owner-only RLS |
-| 2.12 | Resume upload UI | ✅ | Session 3 | Upload/remove on Profile page |
+| 2.12 | Resume upload UI | ✅ | Session 3 | Upload/remove on Profile page (Upgraded to Drag-drop in Session 6) |
 | 2.13 | PostHog — resume events | ✅ | Session 3 | `resume_uploaded`, `resume_removed` |
-| 2.14 | Job status tracking UI | ⏳ | — | List/manage saved jobs page |
+| 2.15 | Profile completeness & form UI | ✅ | Session 6 | Completed ProfileForm (5 sections), ConnectedAccounts (LinkedIn), and ProfileAttentionBanner components |
+| 2.16 | LinkedIn OAuth & Donut Chart Fixes | ✅ | Session 7 | Enabled LinkedIn OAuth backend/frontend, linked integrations in profile page, fixed NaN and empty states in DonutChart |
+| 2.14 | Job status tracking UI | ✅ | Session 7 | List/manage saved jobs page |
 
-## Phase 3: AI Features ⏳
+## Phase 3: AI Features
 
 | # | Feature | Status | Notes |
 |---|---------|--------|-------|
-| 3.1 | AI match scoring | ⏳ | Requires OpenRouter key setup via `npx @insforge/cli ai setup` |
-| 3.2 | Skills breakdown | ⏳ | Post-AI scoring |
-| 3.3 | Company dossiers | ⏳ | Requires AI function |
-| 3.4 | Profile enrichment | ⏳ | Resume upload |
+| 3.1 | AI match scoring | ✅ | Session 7 | OpenRouter GPT-4o, score stored on save |
+| 3.2 | Skills breakdown | ✅ | Session 8 | Extract skills from job description, compare against user profile, show matched/missing on saved-jobs page |
+| 3.3 | Company dossiers | ✅ | Session 15 | AI-generated company research dossiers via OpenRouter, cached in database, premium accordion layout in saved-jobs page |
+| 3.4 | Profile enrichment | ✅ | Session 9 / 13 / 15 | Server action downloads resume, extracts text via pdf-parse v2, sends to GPT-4o-mini for structured extraction, upserts to profile. Session 15: switched to gpt-4o-mini for 2x faster extraction, reduced prompt tokens 60%, made agent logging fire-and-forget, compacted UI to single centered column |
 
 ## Phase 4: Polish & Deploy ⏳
 
 | # | Feature | Status | Notes |
 |---|---------|--------|-------|
-| 4.1 | Error boundaries | ⏳ | |
-| 4.2 | Loading states | ⏳ | Skeleton cards done, more needed |
-| 4.3 | Responsive audit | ⏳ | |
+| 4.1 | Error boundaries | ✅ | Sessions 15-21 | Route-level error.tsx on all pages (root, find-jobs, saved-jobs, dashboard, profile) + global-error.tsx with full layout |
+| 4.2 | Loading states | ✅ | Sessions 15-21 | Skeleton loaders on all routes (find-jobs, saved-jobs, dashboard, profile) with animate-pulse + matched skeleton shapes |
+| 4.3 | Responsive audit | ✅ | Session 22 | Mobile hamburger menu with drawer in AuthenticatedHeader, responsive padding (px-4 sm:px-6, py-8 sm:py-16) across all pages, SavedJobsList cards stack on mobile, dashboard grid 2-col, profile loading skeleton fixed (removed stale ConnectedAccounts block) |
 | 4.4 | Vercel deploy | ⏳ | Via InsForge deployments |
 | 4.5 | Performance audit | ⏳ | |
+| 4.6 | Resume preview upload & PDF download | ✅ | Session 20 | SSR "Node is not defined" crash fixed via dynamic import of dom-to-image-more and jspdf inside click handler. pixelRatio lowered to 2 for better text alignment. Upload persists via API route to profiles.resume_preview_text column. Removed unused html2canvas dep. |
+| 4.7 | Middleware logout fix | ✅ | Session 16 | Updated NextResponse handling to prevent logout on hot reload |
+| 4.8 | Overhauled Find Jobs UI (Feature 09) | ✅ | Session 21 | Upgraded page layout with a premium hero search card, popular search tags, filters sidebar (keyword search, Job Type, Experience, Work Mode, Min Salary slider, Clear All), sorting dropdown, and client-side logic. Added edge function mock jobs fallback. |
 
 ## Context Files Status
 
@@ -64,8 +69,8 @@
 | architecture.md | ✅ | Created Session 3 |
 | ui-tokens.md | ✅ | Created Session 3 |
 | ui-rules.md | ✅ | Created Session 3 |
-| ui-registry.md | ✅ | Updated Session 3 |
+| ui-registry.md | ✅ | Updated Session 21 |
 | code-standards.md | ✅ | Created Session 3 |
 | library-docs.md | ✅ | Created Session 3 |
 | build-plan.md | ✅ | Created Session 3 |
-| progress-tracker.md | ✅ | Created Session 3 |
+| progress-tracker.md | ✅ | Updated Session 22 |

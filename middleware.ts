@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// These names MUST match DEFAULT_ACCESS_TOKEN_COOKIE / DEFAULT_REFRESH_TOKEN_COOKIE
+// in @insforge/sdk/dist/ssr.js — do not change without verifying the SDK source.
 const ACCESS_TOKEN_COOKIE = "insforge_access_token";
 const REFRESH_TOKEN_COOKIE = "insforge_refresh_token";
 
-const PROTECTED_ROUTES = ["/dashboard", "/profile", "/find-jobs"];
+const PROTECTED_ROUTES = ["/dashboard", "/profile", "/saved-jobs"];
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -11,21 +13,20 @@ export async function middleware(request: NextRequest) {
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
 
-  const hasCode = request.nextUrl.searchParams.has("insforge_code");
-
-  if (isProtected && !hasCode) {
+  if (isProtected) {
     const accessToken = request.cookies.get(ACCESS_TOKEN_COOKIE)?.value;
     const refreshToken = request.cookies.get(REFRESH_TOKEN_COOKIE)?.value;
 
+    // Allow through if either token is present — the SDK will refresh if access token is expired
     if (!accessToken && !refreshToken) {
       const loginUrl = new URL("/login", request.url);
       return NextResponse.redirect(loginUrl);
     }
   }
 
-  return NextResponse.next({ request });
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/profile/:path*", "/find-jobs/:path*"],
+  matcher: ["/dashboard/:path*", "/profile/:path*", "/find-jobs/:path*", "/saved-jobs/:path*"],
 };

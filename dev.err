@@ -1,0 +1,705 @@
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+Login page auth check failed: Error: NEXT_REDIRECT
+    at getRedirectError (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:44:19)
+    at redirect (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:54:11)
+    at LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:36:70)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  digest: 'NEXT_REDIRECT;replace;/dashboard;false',
+  mutableCookies: p {
+    _parsed: Map(7) {
+      'odysseus_session' => [Object],
+      'mc_token' => [Object],
+      'ph_YOUR_POSTHOG_API_KEY_posthog' => [Object],
+      'insforge_refresh_token' => [Object],
+      'insforge_csrf_token' => [Object],
+      'insforge_access_token' => [Object],
+      'ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog' => [Object]
+    },
+    _headers: Headers {
+      'set-cookie': 'odysseus_session=5ec898860d5f5819eb6920f90b5c54ad324bed3d3450d127501da58395cfb4d4; Path=/, mc_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoicm91Ymluc2giLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3ODA3NDUyNzUsImV4cCI6MTc4MzMzNzI3NX0.nilgjnxdSyK1qJgA_fY7SMbnCDZZ7iHcgYb6kIEtqoc; Path=/, ph_YOUR_POSTHOG_API_KEY_posthog=%7B%22%24device_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22distinct_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22%24sesid%22%3A%5B1780860027094%2C%22019ea37c-2207-7de5-bb29-ae8e6e3ca647%22%2C1780859281915%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/, insforge_refresh_token=; Path=/, insforge_csrf_token=3a2f398375c6fab6c5949dc693a8928eb7e96f9d6b37972ea7420c7692950bc4; Path=/, insforge_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWRiMWY0Mi1hMDZjLTQzZGQtYTk1Ni0zNjgzMTQzZjhiZjQiLCJlbWFpbCI6InJvdWJpbnNoMDFAZ21haWwuY29tIiwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJpYXQiOjE3ODA5OTcyMTEsImV4cCI6MTc4MDk5ODExMX0._sT4Xzqq1tpqjmyUi29zvVmCJCKmJbXFCiYWevdR1o4; Path=/, ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog=%7B%22%24device_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22distinct_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22%24sesid%22%3A%5B1780997122228%2C%22019eab1a-c15b-7c8c-b585-34da33cde877%22%2C1780987117901%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22http%3A%2F%2Flocalhost%3A3000%2F%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/'
+    }
+  }
+}
+Login page auth check failed: Error: NEXT_REDIRECT
+    at getRedirectError (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:44:19)
+    at redirect (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:54:11)
+    at LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:36:70)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  digest: 'NEXT_REDIRECT;replace;/dashboard;false',
+  mutableCookies: p {
+    _parsed: Map(7) {
+      'odysseus_session' => [Object],
+      'mc_token' => [Object],
+      'ph_YOUR_POSTHOG_API_KEY_posthog' => [Object],
+      'insforge_refresh_token' => [Object],
+      'insforge_csrf_token' => [Object],
+      'insforge_access_token' => [Object],
+      'ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog' => [Object]
+    },
+    _headers: Headers {
+      'set-cookie': 'odysseus_session=5ec898860d5f5819eb6920f90b5c54ad324bed3d3450d127501da58395cfb4d4; Path=/, mc_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoicm91Ymluc2giLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3ODA3NDUyNzUsImV4cCI6MTc4MzMzNzI3NX0.nilgjnxdSyK1qJgA_fY7SMbnCDZZ7iHcgYb6kIEtqoc; Path=/, ph_YOUR_POSTHOG_API_KEY_posthog=%7B%22%24device_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22distinct_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22%24sesid%22%3A%5B1780860027094%2C%22019ea37c-2207-7de5-bb29-ae8e6e3ca647%22%2C1780859281915%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/, insforge_refresh_token=; Path=/, insforge_csrf_token=3a2f398375c6fab6c5949dc693a8928eb7e96f9d6b37972ea7420c7692950bc4; Path=/, insforge_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWRiMWY0Mi1hMDZjLTQzZGQtYTk1Ni0zNjgzMTQzZjhiZjQiLCJlbWFpbCI6InJvdWJpbnNoMDFAZ21haWwuY29tIiwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJpYXQiOjE3ODA5OTcyMTEsImV4cCI6MTc4MDk5ODExMX0._sT4Xzqq1tpqjmyUi29zvVmCJCKmJbXFCiYWevdR1o4; Path=/, ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog=%7B%22%24device_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22distinct_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22%24sesid%22%3A%5B1780997122228%2C%22019eab1a-c15b-7c8c-b585-34da33cde877%22%2C1780987117901%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22http%3A%2F%2Flocalhost%3A3000%2F%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/'
+    }
+  }
+}
+ ⨯ app\profile\page.tsx (58:11) @ ConnectedAccounts
+ ⨯ ReferenceError: ConnectedAccounts is not defined
+    at ProfilePage (./app/profile/page.tsx:104:101)
+[0m [90m 56 | [39m[0m
+[0m [90m 57 | [39m          [33m<[39m[33mProfilePageClient[39m userId[33m=[39m{user[33m.[39mid} [33m/[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 58 | [39m          [33m<[39m[33mConnectedAccounts[39m user[33m=[39m{user} [33m/[39m[33m>[39m[0m
+[0m [90m    | [39m          [31m[1m^[22m[39m[0m
+[0m [90m 59 | [39m[0m
+[0m [90m 60 | [39m          [33m<[39m[33mdiv[39m className[33m=[39m[32m"rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md"[39m[33m>[39m[0m
+[0m [90m 61 | [39m            [33m<[39m[33mp[39m className[33m=[39m[32m"text-xs uppercase tracking-[0.3em] text-accent mb-4"[39m[33m>[39m[33mSession[39m[33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+ ⨯ app\profile\page.tsx (58:11) @ ConnectedAccounts
+ ⨯ ReferenceError: ConnectedAccounts is not defined
+    at ProfilePage (./app/profile/page.tsx:104:101)
+[0m [90m 56 | [39m[0m
+[0m [90m 57 | [39m          [33m<[39m[33mProfilePageClient[39m userId[33m=[39m{user[33m.[39mid} [33m/[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 58 | [39m          [33m<[39m[33mConnectedAccounts[39m user[33m=[39m{user} [33m/[39m[33m>[39m[0m
+[0m [90m    | [39m          [31m[1m^[22m[39m[0m
+[0m [90m 59 | [39m[0m
+[0m [90m 60 | [39m          [33m<[39m[33mdiv[39m className[33m=[39m[32m"rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md"[39m[33m>[39m[0m
+[0m [90m 61 | [39m            [33m<[39m[33mp[39m className[33m=[39m[32m"text-xs uppercase tracking-[0.3em] text-accent mb-4"[39m[33m>[39m[33mSession[39m[33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+ ⨯ app\profile\page.tsx (58:11) @ ConnectedAccounts
+ ⨯ ReferenceError: ConnectedAccounts is not defined
+    at ProfilePage (./app/profile/page.tsx:104:101)
+[0m [90m 56 | [39m[0m
+[0m [90m 57 | [39m          [33m<[39m[33mProfilePageClient[39m userId[33m=[39m{user[33m.[39mid} [33m/[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 58 | [39m          [33m<[39m[33mConnectedAccounts[39m user[33m=[39m{user} [33m/[39m[33m>[39m[0m
+[0m [90m    | [39m          [31m[1m^[22m[39m[0m
+[0m [90m 59 | [39m[0m
+[0m [90m 60 | [39m          [33m<[39m[33mdiv[39m className[33m=[39m[32m"rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md"[39m[33m>[39m[0m
+[0m [90m 61 | [39m            [33m<[39m[33mp[39m className[33m=[39m[32m"text-xs uppercase tracking-[0.3em] text-accent mb-4"[39m[33m>[39m[33mSession[39m[33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+ ⨯ app\profile\page.tsx (58:11) @ ConnectedAccounts
+ ⨯ ReferenceError: ConnectedAccounts is not defined
+    at ProfilePage (./app/profile/page.tsx:104:101)
+[0m [90m 56 | [39m[0m
+[0m [90m 57 | [39m          [33m<[39m[33mProfilePageClient[39m userId[33m=[39m{user[33m.[39mid} [33m/[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 58 | [39m          [33m<[39m[33mConnectedAccounts[39m user[33m=[39m{user} [33m/[39m[33m>[39m[0m
+[0m [90m    | [39m          [31m[1m^[22m[39m[0m
+[0m [90m 59 | [39m[0m
+[0m [90m 60 | [39m          [33m<[39m[33mdiv[39m className[33m=[39m[32m"rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md"[39m[33m>[39m[0m
+[0m [90m 61 | [39m            [33m<[39m[33mp[39m className[33m=[39m[32m"text-xs uppercase tracking-[0.3em] text-accent mb-4"[39m[33m>[39m[33mSession[39m[33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+ ⨯ app\profile\page.tsx (58:11) @ ConnectedAccounts
+ ⨯ ReferenceError: ConnectedAccounts is not defined
+    at ProfilePage (./app/profile/page.tsx:104:101)
+[0m [90m 56 | [39m[0m
+[0m [90m 57 | [39m          [33m<[39m[33mProfilePageClient[39m userId[33m=[39m{user[33m.[39mid} [33m/[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 58 | [39m          [33m<[39m[33mConnectedAccounts[39m user[33m=[39m{user} [33m/[39m[33m>[39m[0m
+[0m [90m    | [39m          [31m[1m^[22m[39m[0m
+[0m [90m 59 | [39m[0m
+[0m [90m 60 | [39m          [33m<[39m[33mdiv[39m className[33m=[39m[32m"rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md"[39m[33m>[39m[0m
+[0m [90m 61 | [39m            [33m<[39m[33mp[39m className[33m=[39m[32m"text-xs uppercase tracking-[0.3em] text-accent mb-4"[39m[33m>[39m[33mSession[39m[33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+ ⨯ app\profile\page.tsx (58:11) @ ConnectedAccounts
+ ⨯ ReferenceError: ConnectedAccounts is not defined
+    at ProfilePage (./app/profile/page.tsx:104:101)
+[0m [90m 56 | [39m[0m
+[0m [90m 57 | [39m          [33m<[39m[33mProfilePageClient[39m userId[33m=[39m{user[33m.[39mid} [33m/[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 58 | [39m          [33m<[39m[33mConnectedAccounts[39m user[33m=[39m{user} [33m/[39m[33m>[39m[0m
+[0m [90m    | [39m          [31m[1m^[22m[39m[0m
+[0m [90m 59 | [39m[0m
+[0m [90m 60 | [39m          [33m<[39m[33mdiv[39m className[33m=[39m[32m"rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md"[39m[33m>[39m[0m
+[0m [90m 61 | [39m            [33m<[39m[33mp[39m className[33m=[39m[32m"text-xs uppercase tracking-[0.3em] text-accent mb-4"[39m[33m>[39m[33mSession[39m[33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async DashboardPage (webpack-internal:///(rsc)/./app/dashboard/page.tsx:17:29) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\webidl-conversions.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/webidl-conversions' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\webidl-conversions.js', but to 'Error: Can't resolve './vendor-chunks/webidl-conversions' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/webidl-conversions (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\webidl-conversions.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/whatwg-url' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\whatwg-url.js', but to 'Error: Can't resolve './vendor-chunks/whatwg-url' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/whatwg-url (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\whatwg-url.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/@supabase' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\@supabase.js', but to 'Error: Can't resolve './vendor-chunks/@supabase' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/@supabase (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\@supabase.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/posthog-js' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\posthog-js.js', but to 'Error: Can't resolve './vendor-chunks/posthog-js' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/posthog-js (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\posthog-js.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/tr46' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\tr46.js', but to 'Error: Can't resolve './vendor-chunks/tr46' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/tr46 (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\vendor-chunks\tr46.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\webpack-runtime.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\not-found.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async DashboardPage (webpack-internal:///(rsc)/./app/dashboard/page.tsx:17:29) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+Warning: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.
+ ⨯ Internal error: TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:224884)
+    at LinkComponent (./node_modules/next/dist/client/link.js:110:40)
+    at oX (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:72648)
+    at ae (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:106055)
+    at ae (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:107952)
+    at e (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:111507)
+    at ar (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:113485)
+    at ao (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:115358)
+    at an (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:114599)
+    at e (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:111856)
+    at ar (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:113485)
+    at ao (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:115358)
+    at C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:103760
+    at ae (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:104238)
+    at e (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:111507)
+    at ar (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:113485)
+    at ao (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:115358)
+    at an (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:114599)
+    at e (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:111856)
+    at ar (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:113485)
+    at ao (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:115358)
+    at C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:103760
+    at ae (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:104238)
+    at e (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:111507)
+    at ar (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:113485)
+    at ao (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:115358)
+    at C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:103760
+    at ae (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:104238)
+    at e (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:111507)
+    at ar (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:113485)
+    at ao (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:115358)
+    at an (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:114599)
+    at e (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:111856)
+    at ar (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:113485)
+    at e (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:111822)
+    at ar (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:113485)
+    at C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:119206
+    at C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:119869
+    at ac (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:119877)
+    at Timeout._onTimeout (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:70190)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async DashboardPage (webpack-internal:///(rsc)/./app/dashboard/page.tsx:17:29) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/auth/refresh/route' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\auth\refresh\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/auth/refresh/route' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/auth/refresh/route (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\auth\refresh\route.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/favicon.ico/route' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\favicon.ico\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/favicon.ico/route' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/favicon.ico/route (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\favicon.ico\route.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/auth/refresh/route' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\auth\refresh\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/auth/refresh/route' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/auth/refresh/route (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\auth\refresh\route.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/upload-resume-preview/route' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/upload-resume-preview/route' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/upload-resume-preview/route (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async DashboardPage (webpack-internal:///(rsc)/./app/dashboard/page.tsx:17:29) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/upload-resume-preview/route' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/upload-resume-preview/route' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/upload-resume-preview/route (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/upload-resume-preview/route' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/upload-resume-preview/route' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/upload-resume-preview/route (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async DashboardPage (webpack-internal:///(rsc)/./app/dashboard/page.tsx:17:29) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async DashboardPage (webpack-internal:///(rsc)/./app/dashboard/page.tsx:17:29) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\cache\webpack\client-development\4.pack.gz_' -> 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\cache\webpack\client-development\4.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/upload-resume-preview/route' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/upload-resume-preview/route' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/upload-resume-preview/route (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async DashboardPage (webpack-internal:///(rsc)/./app/dashboard/page.tsx:17:29) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+ ⨯ C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\login\page_client-reference-manifest.js:1
+globalThis.__RSC_MANIFEST=(globalThis.__RSC_MANIFEST||{});globalThis.__RSC_MANIFEST["/login/page"]={"moduleLoading":{"prefix":"/_next/","crossOrigin":null},"ssrModuleMapping":{"(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js":{"*":{"id":"(ssr)/./node_modules/next/dist/client/components/app-router.js","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js":{"*":{"id":"(ssr)/./node_modules/next/dist/client/components/layout-router.js","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js":{"*":{"id":"(ssr)/./node_modules/next/dist/client/components/not-found-boundary.js","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./node_modules/next/dist/client/components/render-from-template-context.js":{"*":{"id":"(ssr)/./node_modules/next/dist/client/components/render-from-template-context.js","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js":{"*":{"id":"(ssr)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./app/global-error.tsx":{"*":{"id":"(ssr)/./app/global-error.tsx","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./app/components/AuthCallbackHandler.tsx":{"*":{"id":"(ssr)/./app/components/AuthCallbackHandler.tsx","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./app/components/PosthogPageView.tsx":{"*":{"id":"(ssr)/./app/components/PosthogPageView.tsx","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./components/ThemeProvider.tsx":{"*":{"id":"(ssr)/./components/ThemeProvider.tsx","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./app/globals.css":{"*":{"id":"(ssr)/./app/globals.css","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./app/error.tsx":{"*":{"id":"(ssr)/./app/error.tsx","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./app/login/LoginCard.tsx":{"*":{"id":"(ssr)/./app/login/LoginCard.tsx","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./node_modules/next/dist/client/image-component.js":{"*":{"id":"(ssr)/./node_modules/next/dist/client/image-component.js","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./node_modules/next/dist/client/link.js":{"*":{"id":"(ssr)/./node_modules/next/dist/client/link.js","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js":{"*":{"id":"(ssr)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js","name":"*","chunks":[],"async":false}},"(app-pages-browser)/./app/login/error.tsx":{"*":{"id":"(ssr)/./app/login/error.tsx","name":"*","chunks":[],"async":false}}},"edgeSSRModuleMapping":{},"clientModules":{"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\client\\components\\app-router.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\esm\\client\\components\\app-router.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\client\\components\\layout-router.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\esm\\client\\components\\layout-router.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\client\\components\\not-found-boundary.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\esm\\client\\components\\not-found-boundary.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\client\\components\\render-from-template-context.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/render-from-template-context.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\esm\\client\\components\\render-from-template-context.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/render-from-template-context.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\client\\components\\static-generation-searchparams-bailout-provider.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\esm\\client\\components\\static-generation-searchparams-bailout-provider.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js","name":"*","chunks":["app-pages-internals","static/chunks/app-pages-internals.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\global-error.tsx":{"id":"(app-pages-browser)/./app/global-error.tsx","name":"*","chunks":["app/global-error","static/chunks/app/global-error.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\components\\AuthCallbackHandler.tsx":{"id":"(app-pages-browser)/./app/components/AuthCallbackHandler.tsx","name":"*","chunks":["app/layout","static/chunks/app/layout.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\components\\PosthogPageView.tsx":{"id":"(app-pages-browser)/./app/components/PosthogPageView.tsx","name":"*","chunks":["app/layout","static/chunks/app/layout.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\components\\ThemeProvider.tsx":{"id":"(app-pages-browser)/./components/ThemeProvider.tsx","name":"*","chunks":["app/layout","static/chunks/app/layout.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\font\\google\\target.css?{\"path\":\"app\\\\layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"],\"variable\":\"--font-inter\"}],\"variableName\":\"inter\"}":{"id":"(app-pages-browser)/./node_modules/next/font/google/target.css?{\"path\":\"app\\\\layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"],\"variable\":\"--font-inter\"}],\"variableName\":\"inter\"}","name":"*","chunks":["app/layout","static/chunks/app/layout.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\globals.css":{"id":"(app-pages-browser)/./app/globals.css","name":"*","chunks":["app/layout","static/chunks/app/layout.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\error.tsx":{"id":"(app-pages-browser)/./app/error.tsx","name":"*","chunks":["app/error","static/chunks/app/error.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\login\\LoginCard.tsx":{"id":"(app-pages-browser)/./app/login/LoginCard.tsx","name":"*","chunks":["app/login/page","static/chunks/app/login/page.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\client\\image-component.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/image-component.js","name":"*","chunks":["app/login/page","static/chunks/app/login/page.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\esm\\client\\image-component.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/image-component.js","name":"*","chunks":["app/login/page","static/chunks/app/login/page.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\client\\link.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/link.js","name":"*","chunks":["app/login/page","static/chunks/app/login/page.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\esm\\client\\link.js":{"id":"(app-pages-browser)/./node_modules/next/dist/client/link.js","name":"*","chunks":["app/login/page","static/chunks/app/login/page.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\shared\\lib\\lazy-dynamic\\dynamic-no-ssr.js":{"id":"(app-pages-browser)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js","name":"*","chunks":["app/login/page","static/chunks/app/login/page.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\node_modules\\next\\dist\\esm\\shared\\lib\\lazy-dynamic\\dynamic-no-ssr.js":{"id":"(app-pages-browser)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js","name":"*","chunks":["app/login/page","static/chunks/app/login/page.js"],"async":false},"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\login\\error.tsx":{"id":"(app-pages-browser)/./app/login/error.tsx","name":"*","chunks":["app/login/error","static/chunks/app/login/error.js"],"async":false}},"entryCSSFiles":{"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\global-error":["static/css/app/global-error.css"],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\layout":["static/css/app/layout.css"],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\error":[],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\login\\page":[],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\login\\error":[]}}l-error":["static/css/app/global-error.css"],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\layout":["static/css/app/layout.css"],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\error":[],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\page":[],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\not-found":[],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\login\\page":[],"C:\\Users\\Krishna\\OneDrive\\Desktop\\job_pilot\\app\\login\\error":[]}}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+
+SyntaxError: Unexpected identifier 'l'
+    at wrapSafe (node:internal/modules/cjs/loader:1787:18)
+    at Module._compile (node:internal/modules/cjs/loader:1828:20)
+    at Object..js (node:internal/modules/cjs/loader:1985:10)
+    at Module.load (node:internal/modules/cjs/loader:1577:32)
+    at Module._load (node:internal/modules/cjs/loader:1379:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1600:12)
+    at mod.require (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:153:16)
+    at loadClientReferenceManifest (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js:43:72)
+    at loadComponentsImpl (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js:65:29)
+    at async DevServer.findPageComponentsImpl (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\next-server.js:439:36)
+    at async DevServer.findPageComponents (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\dev\next-dev-server.js:535:20)
+    at async DevServer.renderPageComponent (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\base-server.js:1596:24)
+    at async DevServer.renderToResponseImpl (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\base-server.js:1646:32)
+    at async DevServer.pipeImpl (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\base-server.js:834:25)
+    at async DevServer.handleCatchallRenderRequest (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\next-server.js:623:13)
+    at async DevServer.handleRequestImpl (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\base-server.js:736:17) {
+  page: '/login'
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/upload-resume-preview/route' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/upload-resume-preview/route' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/upload-resume-preview/route (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\utils.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+InsForge auth getCurrentUser error: _InsForgeError: Invalid token
+    at _InsForgeError.fromApiError (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:29:16)
+    at parseResponse (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:329:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async HttpClient.handleRequest (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:540:20)
+    at async HttpClient.request (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:553:20)
+    at async Auth.getCurrentUser (webpack-internal:///(rsc)/./node_modules/@insforge/sdk/dist/ssr.mjs:1117:34)
+    at async LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:30:33) {
+  statusCode: 401,
+  error: 'AUTH_UNAUTHORIZED',
+  nextActions: undefined
+}
+Login page auth check failed: Error: NEXT_REDIRECT
+    at getRedirectError (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:44:19)
+    at redirect (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:54:11)
+    at LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:36:70)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  digest: 'NEXT_REDIRECT;replace;/dashboard;false',
+  mutableCookies: p {
+    _parsed: Map(7) {
+      'odysseus_session' => [Object],
+      'mc_token' => [Object],
+      'ph_YOUR_POSTHOG_API_KEY_posthog' => [Object],
+      'insforge_refresh_token' => [Object],
+      'insforge_csrf_token' => [Object],
+      'insforge_access_token' => [Object],
+      'ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog' => [Object]
+    },
+    _headers: Headers {
+      'set-cookie': 'odysseus_session=5ec898860d5f5819eb6920f90b5c54ad324bed3d3450d127501da58395cfb4d4; Path=/, mc_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoicm91Ymluc2giLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3ODA3NDUyNzUsImV4cCI6MTc4MzMzNzI3NX0.nilgjnxdSyK1qJgA_fY7SMbnCDZZ7iHcgYb6kIEtqoc; Path=/, ph_YOUR_POSTHOG_API_KEY_posthog=%7B%22%24device_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22distinct_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22%24sesid%22%3A%5B1780860027094%2C%22019ea37c-2207-7de5-bb29-ae8e6e3ca647%22%2C1780859281915%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/, insforge_refresh_token=; Path=/, insforge_csrf_token=9fc517a14f01ff218f453b7adce0c6d6f863ac00c3082725bc711fcb9b082716; Path=/, insforge_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWRiMWY0Mi1hMDZjLTQzZGQtYTk1Ni0zNjgzMTQzZjhiZjQiLCJlbWFpbCI6InJvdWJpbnNoMDFAZ21haWwuY29tIiwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJpYXQiOjE3ODEwMDY2MzQsImV4cCI6MTc4MTAwNzUzNH0.8ClOYVzTmmPuScFZhZC7L_DHca7IpIKRcxGnvp92ShE; Path=/, ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog=%7B%22%24device_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22distinct_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22%24sesid%22%3A%5B1781006546607%2C%22019eac18-aa8f-725b-9f5d-7a752ad54a6b%22%2C1781003758223%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22http%3A%2F%2Flocalhost%3A3000%2F%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/'
+    }
+  }
+}
+Login page auth check failed: Error: NEXT_REDIRECT
+    at getRedirectError (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:44:19)
+    at redirect (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:54:11)
+    at LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:36:70)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  digest: 'NEXT_REDIRECT;replace;/dashboard;false',
+  mutableCookies: p {
+    _parsed: Map(7) {
+      'odysseus_session' => [Object],
+      'mc_token' => [Object],
+      'ph_YOUR_POSTHOG_API_KEY_posthog' => [Object],
+      'insforge_refresh_token' => [Object],
+      'insforge_csrf_token' => [Object],
+      'insforge_access_token' => [Object],
+      'ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog' => [Object]
+    },
+    _headers: Headers {
+      'set-cookie': 'odysseus_session=5ec898860d5f5819eb6920f90b5c54ad324bed3d3450d127501da58395cfb4d4; Path=/, mc_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoicm91Ymluc2giLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3ODA3NDUyNzUsImV4cCI6MTc4MzMzNzI3NX0.nilgjnxdSyK1qJgA_fY7SMbnCDZZ7iHcgYb6kIEtqoc; Path=/, ph_YOUR_POSTHOG_API_KEY_posthog=%7B%22%24device_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22distinct_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22%24sesid%22%3A%5B1780860027094%2C%22019ea37c-2207-7de5-bb29-ae8e6e3ca647%22%2C1780859281915%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/, insforge_refresh_token=; Path=/, insforge_csrf_token=9fc517a14f01ff218f453b7adce0c6d6f863ac00c3082725bc711fcb9b082716; Path=/, insforge_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWRiMWY0Mi1hMDZjLTQzZGQtYTk1Ni0zNjgzMTQzZjhiZjQiLCJlbWFpbCI6InJvdWJpbnNoMDFAZ21haWwuY29tIiwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJpYXQiOjE3ODEwMDY2MzQsImV4cCI6MTc4MTAwNzUzNH0.8ClOYVzTmmPuScFZhZC7L_DHca7IpIKRcxGnvp92ShE; Path=/, ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog=%7B%22%24device_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22distinct_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22%24sesid%22%3A%5B1781006563986%2C%22019eac18-aa8f-725b-9f5d-7a752ad54a6b%22%2C1781003758223%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22http%3A%2F%2Flocalhost%3A3000%2F%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/'
+    }
+  }
+}
+ ⨯ Internal error: Error: The render was aborted by the server without a reason.
+    at eG (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:330486)
+    at Object.cancel (C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:11:343916)
+    at Object.cancelAlgorithm (node:internal/webstreams/util:175:29)
+    at readableByteStreamControllerCancelSteps (node:internal/webstreams/readablestream:3262:37)
+    at [kCancel] (node:internal/webstreams/readablestream:1234:12)
+    at readableStreamCancel (node:internal/webstreams/readablestream:2109:39)
+    at node:internal/webstreams/readablestream:1635:15
+    at complete (node:internal/webstreams/readablestream:1475:9)
+    at shutdownWithAnAction (node:internal/webstreams/readablestream:1471:5)
+    at node:internal/webstreams/readablestream:1634:14
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Login page auth check failed: Error: NEXT_REDIRECT
+    at getRedirectError (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:44:19)
+    at redirect (webpack-internal:///(rsc)/./node_modules/next/dist/client/components/redirect.js:54:11)
+    at LoginPage (webpack-internal:///(rsc)/./app/login/page.tsx:36:70)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  digest: 'NEXT_REDIRECT;replace;/dashboard;false',
+  mutableCookies: p {
+    _parsed: Map(7) {
+      'odysseus_session' => [Object],
+      'mc_token' => [Object],
+      'ph_YOUR_POSTHOG_API_KEY_posthog' => [Object],
+      'insforge_refresh_token' => [Object],
+      'insforge_csrf_token' => [Object],
+      'insforge_access_token' => [Object],
+      'ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog' => [Object]
+    },
+    _headers: Headers {
+      'set-cookie': 'odysseus_session=5ec898860d5f5819eb6920f90b5c54ad324bed3d3450d127501da58395cfb4d4; Path=/, mc_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoicm91Ymluc2giLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3ODA3NDUyNzUsImV4cCI6MTc4MzMzNzI3NX0.nilgjnxdSyK1qJgA_fY7SMbnCDZZ7iHcgYb6kIEtqoc; Path=/, ph_YOUR_POSTHOG_API_KEY_posthog=%7B%22%24device_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22distinct_id%22%3A%22019ea37c-21f8-79f7-bb40-32c6f2793e12%22%2C%22%24sesid%22%3A%5B1780860027094%2C%22019ea37c-2207-7de5-bb29-ae8e6e3ca647%22%2C1780859281915%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/, insforge_refresh_token=; Path=/, insforge_csrf_token=c29473efff6d6dd0fd7ff605c988d94032ff512ad96e0fffcf1569bae6037efd; Path=/, insforge_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWRiMWY0Mi1hMDZjLTQzZGQtYTk1Ni0zNjgzMTQzZjhiZjQiLCJlbWFpbCI6InJvdWJpbnNoMDFAZ21haWwuY29tIiwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJpYXQiOjE3ODEwMDY2NjMsImV4cCI6MTc4MTAwNzU2M30.HIYFjok3Vwg4LA71Flp4N-hy780g7hK0x4POfYWPChY; Path=/, ph_phc_qMtE7ZhFsJwyvNR2XWJLm3r4UzYENRzLXzSkcmJdesP8_posthog=%7B%22%24device_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22distinct_id%22%3A%22019ea38f-b71a-7f6a-8765-03a60d779f16%22%2C%22%24sesid%22%3A%5B1781006574703%2C%22019eac18-aa8f-725b-9f5d-7a752ad54a6b%22%2C1781003758223%5D%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22http%3A%2F%2Flocalhost%3A3000%2F%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A3000%2Fprofile%22%7D%2C%22%24user_state%22%3A%22anonymous%22%7D; Path=/'
+    }
+  }
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/upload-resume-preview/route' in C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/upload-resume-preview/route' in 'C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/upload-resume-preview/route (expected C:\Users\Krishna\OneDrive\Desktop\job_pilot\.next\server\app\api\upload-resume-preview\route.js)
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\export\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\worker.js
+<w>  at file dependencies C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs C:\Users\Krishna\OneDrive\Desktop\job_pilot\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js

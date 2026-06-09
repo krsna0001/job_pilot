@@ -39,14 +39,14 @@ export default async function DashboardPage() {
     <>
       <AuthenticatedHeader email={user?.email} name={user?.profile?.name} />
       <main className="min-h-screen bg-background text-text-primary">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <div className="mb-8 rounded-[2rem] border border-border bg-surface p-10 shadow-sm">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-16">
+          <div className="mb-8 rounded-[2rem] border border-border bg-surface p-6 sm:p-10 shadow-sm">
             <p className="text-xs uppercase tracking-[0.3em] text-accent">Protected path: /dashboard</p>
-            <h1 className="mt-3 text-4xl font-semibold text-text-darkest">Dashboard</h1>
+            <h1 className="mt-3 text-3xl sm:text-4xl font-semibold text-text-darkest">Dashboard</h1>
             <p className="mt-3 text-base text-text-secondary">Welcome back, {email}.</p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2">
             <Link
               href="/find-jobs"
               className="rounded-[1.75rem] border border-border bg-surface p-6 text-center transition hover:border-accent hover:bg-surface-secondary"
@@ -65,16 +65,16 @@ export default async function DashboardPage() {
           </div>
 
           {recentJobs.length > 0 ? (
-            <div className="mt-8 rounded-[2rem] border border-border bg-surface p-8 shadow-sm">
+            <div className="mt-8 rounded-[2rem] border border-border bg-surface p-6 sm:p-8 shadow-sm">
               <p className="text-xs uppercase tracking-[0.3em] text-accent">Recent Saved Jobs</p>
               <div className="mt-6 space-y-4">
                 {recentJobs.map((job, i) => (
-                  <div key={i} className="flex items-center justify-between rounded-xl border border-border bg-surface-secondary px-5 py-4">
+                  <div key={i} className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between rounded-xl border border-border bg-surface-secondary px-5 py-4">
                     <div>
                       <p className="text-sm font-semibold text-text-darkest">{job.title}</p>
                       <p className="text-xs text-text-secondary">{job.company}</p>
                     </div>
-                    <span className="rounded-full bg-accent-light px-3 py-1 text-xs font-medium capitalize text-accent">
+                    <span className="self-start sm:self-auto rounded-full bg-accent-light px-3 py-1 text-xs font-medium capitalize text-accent">
                       {job.status}
                     </span>
                   </div>
@@ -82,7 +82,7 @@ export default async function DashboardPage() {
               </div>
               <div className="mt-6">
                 <Link
-                  href="/find-jobs"
+                  href="/saved-jobs"
                   className="text-sm font-medium text-accent transition hover:text-accent-dark"
                 >
                   View all saved jobs →

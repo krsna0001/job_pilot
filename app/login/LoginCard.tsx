@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { insforge } from "../../lib/insforge-client";
 
 const providers = [
@@ -25,20 +25,97 @@ const providers = [
       </svg>
     ),
   },
+  {
+    label: "Continue with LinkedIn",
+    provider: "linkedin",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function LoginCard() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [activeProvider, setActiveProvider] = useState<"google" | "github" | null>(null);
+  const [isExchanging, setIsExchanging] = useState(false);
+  const [activeProvider, setActiveProvider] = useState<"google" | "github" | "linkedin" | null>(null);
 
-  const handleOAuth = async (provider: "google" | "github") => {
+  // The SDK stores the PKCE code_verifier in sessionStorage during signInWithOAuth().
+  // When the OAuth provider redirects back to /api/auth/callback?insforge_code=xxx,
+  // our server route passes it through to /login?insforge_code=xxx (this page).
+  // detectAuthCallback() reads the code from the URL + the verifier from sessionStorage,
+  // exchanges them with InsForge, and sets the session in the SDK's in-memory state.
+  // We then sync that session to httpOnly cookies via /api/auth/session so middleware works.
+  useEffect(() => {
+    let cancelled = false;
+
+    async function handleCallback() {
+      const params = new URLSearchParams(window.location.search);
+      const hasCode = params.has("insforge_code");
+      const hasPending = sessionStorage.getItem("insforge_pending_oauth") === "true";
+
+      if (!hasCode && !hasPending) return;
+
+      setIsExchanging(true);
+
+      // SDK's constructor calls detectAuthCallback() automatically on page load
+      // and exchanges the OAuth code. We just poll for the session.
+
+      // Poll until the SDK has a valid session, then sync cookies + redirect
+      let attempts = 0;
+      const interval = setInterval(async () => {
+        if (cancelled) { clearInterval(interval); return; }
+        attempts++;
+
+        const { data } = await insforge.auth.getCurrentUser();
+        if (data?.user) {
+          clearInterval(interval);
+          sessionStorage.removeItem("insforge_pending_oauth");
+
+          // Sync tokens to httpOnly cookies so middleware can verify the session
+          try {
+            const tokenManager = (insforge as any).tokenManager;
+            const http = (insforge as any).http;
+            const accessToken = tokenManager?.getAccessToken?.();
+            const refreshToken = http?.refreshToken;
+            await fetch("/api/auth/session", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ accessToken, refreshToken }),
+            });
+          } catch (e) {
+            console.error("Failed to sync session cookies:", e);
+          }
+
+          window.location.href = "/dashboard";
+          return;
+        }
+
+        if (attempts > 40) {
+          clearInterval(interval);
+          sessionStorage.removeItem("insforge_pending_oauth");
+          setIsExchanging(false);
+          setError("Login timed out. Please try again.");
+        }
+      }, 300);
+    }
+
+    handleCallback();
+    return () => { cancelled = true; };
+  }, []);
+
+
+  const handleOAuth = async (provider: "google" | "github" | "linkedin") => {
     setError(null);
     setActiveProvider(provider);
     setIsLoading(true);
 
     const { data, error } = await insforge.auth.signInWithOAuth(provider, {
-      redirectTo: `${window.location.origin}/profile`,
+      // IMPORTANT: redirectTo MUST be a URL listed in insforge.toml allowed_redirect_urls.
+      // /api/auth/callback is listed there. /login is NOT \u2014 do not use /login here.
+      redirectTo: `${window.location.origin}/api/auth/callback`,
       skipBrowserRedirect: true,
     });
 
@@ -60,6 +137,18 @@ export default function LoginCard() {
     setError("Unable to start auth flow. Please try again.");
   };
 
+  if (isExchanging) {
+    return (
+      <div className="rounded-[2rem] border border-border bg-surface-secondary p-10 shadow-xl flex flex-col items-center justify-center gap-6 min-h-[280px]">
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-accent-light border-t-accent" />
+        <div className="text-center">
+          <h3 className="text-xl font-semibold text-text-darkest">Completing login…</h3>
+          <p className="mt-2 text-sm text-text-secondary">Securing your session with InsForge.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="rounded-[2rem] border border-border bg-surface-secondary p-10 shadow-xl">
       <div className="space-y-6 text-center">
@@ -71,12 +160,12 @@ export default function LoginCard() {
 
       <div className="mt-8 space-y-4">
         {providers.map((item) => {
-          const providerLabel = item.provider === "google" ? "Google" : "GitHub";
+          const providerLabel = item.provider === "google" ? "Google" : item.provider === "github" ? "GitHub" : "LinkedIn";
           return (
             <button
               key={item.provider}
               type="button"
-              onClick={() => handleOAuth(item.provider as "google" | "github")}
+              onClick={() => handleOAuth(item.provider as "google" | "github" | "linkedin")}
               disabled={isLoading}
               className="flex h-14 w-full items-center justify-center gap-3 rounded-[1.75rem] border border-border bg-surface px-6 text-sm font-semibold text-text-primary transition hover:-translate-y-0.5 hover:shadow-lg hover:bg-surface-secondary disabled:cursor-progress disabled:opacity-70"
             >
@@ -89,7 +178,7 @@ export default function LoginCard() {
 
       {isLoading && activeProvider ? (
         <p className="mt-6 text-center text-sm font-medium text-text-secondary">
-          Opening {activeProvider === "google" ? "Google" : "GitHub"} login…
+          Opening {activeProvider === "google" ? "Google" : activeProvider === "github" ? "GitHub" : "LinkedIn"} login…
         </p>
       ) : null}
 

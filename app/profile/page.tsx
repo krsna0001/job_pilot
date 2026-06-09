@@ -1,62 +1,66 @@
-import Link from "next/link";
+import { redirect } from "next/navigation";
 import { createInsforgeServer } from "../../lib/insforge-server";
-import SignOutButton from "../components/SignOutButton";
 import AuthenticatedHeader from "../components/AuthenticatedHeader";
-import ResumeUpload from "./components/ResumeUpload";
+import ProfileAttentionBanner from "./components/ProfileAttentionBanner";
+import ProfilePageClient from "./components/ProfilePageClient";
+import SignOutButton from "../components/SignOutButton";
 
 export default async function ProfilePage() {
   const insforge = await createInsforgeServer();
   const { data, error } = await insforge.auth.getCurrentUser();
   const user = data?.user;
-  const userName = user?.profile?.name ?? user?.email ?? "Not set";
 
   if (error) {
     console.warn("InsForge auth getCurrentUser error:", error);
   }
 
+  if (!user) {
+    redirect("/login");
+  }
+
+  const { data: profile } = await insforge.database
+    .from("profiles")
+    .select("*")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  const hasResume = !!profile?.resume_url;
+  const hasSkills = !!(profile?.skills && Array.isArray(profile.skills) && profile.skills.length > 0);
+  const hasExperience = !!(profile?.experience && Array.isArray(profile.experience) && profile.experience.length > 0);
+  const hasEducation = !!(profile?.education && Array.isArray(profile.education) && profile.education.length > 0);
+  
+  const prefs = profile?.job_preferences as Record<string, any> | null;
+  const hasPreferences = !!(prefs && typeof prefs === "object" && prefs.roleTitle);
+
   return (
     <>
-      <AuthenticatedHeader email={user?.email} name={user?.profile?.name} />
+      <AuthenticatedHeader email={user.email} name={user.profile?.name} />
       <main className="min-h-screen bg-background text-text-primary">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <div className="mb-8 rounded-[2rem] border border-border bg-surface p-10 shadow-sm">
-            <p className="text-xs uppercase tracking-[0.3em] text-accent">Your Account</p>
-            <h1 className="mt-3 text-4xl font-semibold text-text-darkest">Profile</h1>
-            <p className="mt-3 text-base text-text-secondary">
-              {user ? `Welcome, ${user.email}` : "No user session found."}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-16 space-y-8">
+          
+          <div className="rounded-[2rem] border border-border bg-surface p-6 sm:p-10 shadow-sm">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent">Developer Profile</p>
+            <h1 className="mt-3 text-3xl sm:text-4xl font-semibold text-text-darkest">Your Profile</h1>
+            <p className="mt-2 text-base text-text-secondary">
+              Manage your personal info, resumes, integrations, and preferences.
             </p>
           </div>
 
-          <div className="rounded-[2rem] border border-border bg-surface p-10 shadow-sm">
-            <div className="space-y-8">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-accent">Account Information</p>
-                <div className="mt-6 space-y-6">
-                  <div>
-                    <p className="text-sm font-semibold text-text-darkest">Full Name</p>
-                    <p className="mt-2 text-base text-text-secondary">{userName}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-text-darkest">Email Address</p>
-                    <p className="mt-2 text-base text-text-secondary">{user?.email ?? "Not set"}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-text-darkest">User ID</p>
-                    <p className="mt-2 text-base font-mono text-text-secondary text-xs">{user?.id ?? "Unknown"}</p>
-                  </div>
-                </div>
-              </div>
+          <ProfileAttentionBanner
+            hasResume={hasResume}
+            hasSkills={hasSkills}
+            hasExperience={hasExperience}
+            hasEducation={hasEducation}
+            hasPreferences={hasPreferences}
+          />
 
-              <div className="border-t border-border pt-8">
-                <ResumeUpload userId={user?.id ?? ""} />
-              </div>
+          <ProfilePageClient userId={user.id} />
 
-              <div className="border-t border-border pt-8">
-                <p className="text-xs uppercase tracking-[0.3em] text-accent mb-6">Session Management</p>
-                <SignOutButton />
-              </div>
-            </div>
+          <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Session</p>
+            <SignOutButton />
           </div>
+
         </div>
       </main>
     </>

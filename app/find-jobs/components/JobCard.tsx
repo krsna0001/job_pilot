@@ -1,6 +1,7 @@
 'use client';
 
 import { capture } from "@/lib/posthog";
+import { getCurrencySymbol } from "@/lib/currency";
 
 export interface Job {
   id: string;
@@ -22,14 +23,29 @@ interface JobCardProps {
   onUnsave: (jobId: string) => void;
   isSaved: boolean;
   isSaving: boolean;
+  matchScore?: number | null;
+  currencySymbol?: string;
 }
 
-export default function JobCard({ job, onSave, onUnsave, isSaved, isSaving }: JobCardProps) {
+export default function JobCard({
+  job,
+  onSave,
+  onUnsave,
+  isSaved,
+  isSaving,
+  matchScore,
+  currencySymbol = "$",
+}: JobCardProps) {
+  // If the specific job location matches a known currency, use that;
+  // otherwise, fall back to the active search/profile currencySymbol.
+  const jobCurrency = getCurrencySymbol(job.location.display_name);
+  const activeCurrency = jobCurrency !== "$" ? jobCurrency : (currencySymbol || "$");
+
   const salary =
     job.salary_min && job.salary_max
-      ? `£${(job.salary_min / 1000).toFixed(0)}k - £${(job.salary_max / 1000).toFixed(0)}k`
+      ? `${activeCurrency}${(job.salary_min / 1000).toFixed(0)}k - ${activeCurrency}${(job.salary_max / 1000).toFixed(0)}k`
       : job.salary_min
-        ? `From £${(job.salary_min / 1000).toFixed(0)}k`
+        ? `From ${activeCurrency}${(job.salary_min / 1000).toFixed(0)}k`
         : "Salary not listed";
 
   const posted = new Date(job.created).toLocaleDateString("en-GB", {
@@ -52,7 +68,14 @@ export default function JobCard({ job, onSave, onUnsave, isSaved, isSaving }: Jo
     <div className="rounded-[1.75rem] border border-border bg-surface p-6 shadow-sm transition hover:shadow-md">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
-          <h3 className="text-lg font-semibold text-text-darkest">{job.title}</h3>
+          <div className="flex items-center gap-3">
+            <h3 className="text-lg font-semibold text-text-darkest">{job.title}</h3>
+            {matchScore !== undefined && matchScore !== null ? (
+              <span className={`text-sm font-semibold ${matchScore >= 70 ? "text-success" : matchScore >= 40 ? "text-warning" : "text-error"}`}>
+                {matchScore}%
+              </span>
+            ) : null}
+          </div>
           <p className="mt-1 text-sm font-medium text-text-secondary">{job.company.display_name}</p>
           <p className="mt-0.5 text-xs text-text-muted">{job.location.display_name}</p>
         </div>

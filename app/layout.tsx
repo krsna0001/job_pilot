@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthCallbackHandler from "./components/AuthCallbackHandler";
 import PosthogPageView from "./components/PosthogPageView";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,11 +22,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col bg-background text-text-primary">
-        <PosthogPageView />
-        <AuthCallbackHandler />
-        {children}
+        <script dangerouslySetInnerHTML={{
+          __html: `(function(){try{var t=localStorage.getItem('jobpilot-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()`
+        }} />
+        <ThemeProvider>
+          <PosthogPageView />
+          <AuthCallbackHandler />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

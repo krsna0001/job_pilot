@@ -32,54 +32,45 @@ export default function ResumeUpload({ userId }: { userId: string }) {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0];
-    if (f) {
-      if (!f.type.includes("pdf")) {
-        setError("Only PDF files are accepted");
-        return;
-      }
-      if (f.size > 5 * 1024 * 1024) {
-        setError("File must be under 5MB");
-        return;
-      }
-      setError(null);
-      setFile(f);
+    if (!f) return;
+    if (!f.type.includes("pdf")) {
+      setError("Only PDF files are accepted");
+      return;
     }
+    if (f.size > 5 * 1024 * 1024) {
+      setError("File must be under 5MB");
+      return;
+    }
+    setError(null);
+    setFile(f);
+    // Automatically upload after selection
+    await uploadFile(f);
   };
 
-  const handleUpload = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!file) return;
-
+  const uploadFile = async (f: File) => {
     setIsUploading(true);
-    setError(null);
-
     const key = `${userId}/resume.pdf`;
-
     const { data: uploadData, error: uploadError } = await insforge.storage
       .from("resumes")
-      .upload(key, file);
-
+      .upload(key, f);
     if (uploadError || !uploadData) {
       setError(uploadError?.message ?? "Upload failed");
       setIsUploading(false);
       return;
     }
-
     const { error: upsertError } = await insforge.database
       .from("profiles")
       .upsert(
         { user_id: userId, resume_url: uploadData.url, resume_key: uploadData.key },
         { onConflict: "user_id" },
       );
-
     if (upsertError) {
       setError(upsertError.message);
       setIsUploading(false);
       return;
     }
-
     setResume({ resume_url: uploadData.url, resume_key: uploadData.key });
     setFile(null);
     setIsUploading(false);
@@ -148,27 +139,19 @@ export default function ResumeUpload({ userId }: { userId: string }) {
         </div>
       ) : null}
 
-      <form onSubmit={handleUpload} className="mt-4 space-y-4">
-        {!resume?.resume_url ? (
-          <p className="text-sm text-text-secondary">Upload your resume (PDF, max 5MB) to enable AI match scoring.</p>
-        ) : null}
-
-        <div className="flex items-center gap-4">
+      <div className="mt-4 space-y-4">
+          {!resume?.resume_url && (
+            <p className="text-sm text-text-secondary">Upload your resume (PDF, max 5MB) to enable AI match scoring.</p>
+          )}
           <input
             type="file"
             accept=".pdf,application/pdf"
             onChange={handleFileChange}
+            disabled={isUploading}
             className="block w-full text-sm text-text-secondary file:mr-4 file:cursor-pointer file:rounded-xl file:border file:border-border file:bg-surface file:px-4 file:py-2 file:text-sm file:font-medium file:text-text-primary file:transition hover:file:border-accent hover:file:text-accent"
           />
-          <button
-            type="submit"
-            disabled={!file || isUploading}
-            className="rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground transition hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {isUploading ? "Uploading..." : "Upload"}
-          </button>
+          {isUploading && <p className="mt-2 text-sm text-text-primary">Uploading...</p>}
         </div>
-      </form>
 
       {error ? (
         <p className="mt-3 rounded-xl bg-error/10 px-4 py-2 text-sm text-error">{error}</p>

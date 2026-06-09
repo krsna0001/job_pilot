@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { title: "Dashboard", href: "/dashboard" },
@@ -18,7 +19,7 @@ function Home() {
                 src="/logo.png"
                 alt="JobPilot logo"
                 fill
-                className="object-contain scale-75"
+                className="object-cover object-left"
                 sizes="44px"
               />
             </div>
@@ -26,14 +27,15 @@ function Home() {
           </Link>
 
           <div className="flex flex-wrap items-center gap-4">
-            <nav className="hidden items-center gap-8 text-sm font-medium text-text-dark sm:flex">
-              {navItems.map((item) => (
-                <Link key={item.title} href={item.href} className="transition hover:text-accent">
-                  {item.title}
-                </Link>
-              ))}
-            </nav>
-            <Link
+                      <nav className="hidden items-center gap-8 text-sm font-medium text-text-dark sm:flex">
+                        {navItems.map((item) => (
+                          <Link key={item.title} href={item.href} className="transition hover:text-accent">
+                            {item.title}
+                          </Link>
+                        ))}
+                      </nav>
+                      <ThemeToggle />
+                      <Link
               href="/login"
               className="rounded-lg bg-accent px-5 py-3 text-sm font-medium text-accent-foreground transition hover:bg-accent-dark"
             >
