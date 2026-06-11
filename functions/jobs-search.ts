@@ -10,66 +10,143 @@ const corsHeaders = {
 
 const MOCK_JOBS = [
   {
-    id: "mock-job-1",
-    title: "React Developer",
-    company: { display_name: "Vercel" },
-    location: { display_name: "London" },
-    description: "Join our core team building Next.js and React interfaces. We build fast, responsive user experiences using Tailwind CSS, TypeScript, and standard design tokens. You will work on optimizing client-side performance, state management, and contributing to open-source developer tooling. Experience with remote collaboration is a plus.",
-    salary_min: 60000,
-    salary_max: 85000,
-    created: new Date().toISOString(),
-    redirect_url: "https://vercel.com",
-    adref: "mock"
+    id: "mock-job-1", title: "React Developer", company: { display_name: "Vercel" }, location: { display_name: "London" },
+    description: "Join our core team building Next.js and React interfaces. We build fast, responsive user experiences using Tailwind CSS, TypeScript, and standard design tokens.", salary_min: 60000, salary_max: 85000,
+    created: new Date().toISOString(), redirect_url: "https://vercel.com", adref: "mock", contract_type: "full-time", contract_time: "permanent", source: "mock",
   },
   {
-    id: "mock-job-2",
-    title: "Senior Next.js Engineer",
-    company: { display_name: "Supabase" },
-    location: { display_name: "Remote" },
-    description: "We are seeking a senior engineer to own our dashboard developer experience. Experience with React, TypeScript, server-side rendering, and SQL database interactions is essential. You will build highly collaborative realtime tables and charts using Tailwind and SVG elements. This is a fully remote position.",
-    salary_min: 90000,
-    salary_max: 130000,
-    created: new Date(Date.now() - 86400000).toISOString(),
-    redirect_url: "https://supabase.com",
-    adref: "mock"
+    id: "mock-job-2", title: "Senior Next.js Engineer", company: { display_name: "Supabase" }, location: { display_name: "Remote" },
+    description: "Looking for a senior engineer to own our dashboard DX. React, TypeScript, SSR, SQL. Fully remote.", salary_min: 90000, salary_max: 130000,
+    created: new Date(Date.now() - 86400000).toISOString(), redirect_url: "https://supabase.com", adref: "mock", contract_type: "full-time", contract_time: "permanent", source: "mock",
   },
   {
-    id: "mock-job-3",
-    title: "Fullstack Node.js Developer",
-    company: { display_name: "Stripe" },
-    location: { display_name: "Dublin" },
-    description: "Looking for a fullstack developer to work on our dashboard and merchant tools. Strong skills in Node.js, Express, React, and RESTful API design. Hybrid role combining office collaboration with flexible remote work policies.",
-    salary_min: 75000,
-    salary_max: 110000,
-    created: new Date(Date.now() - 172800000).toISOString(),
-    redirect_url: "https://stripe.com",
-    adref: "mock"
+    id: "mock-job-3", title: "Fullstack Node.js Developer", company: { display_name: "Stripe" }, location: { display_name: "Dublin" },
+    description: "Fullstack developer for dashboard and merchant tools. Node.js, Express, React, REST APIs. Hybrid.", salary_min: 75000, salary_max: 110000,
+    created: new Date(Date.now() - 172800000).toISOString(), redirect_url: "https://stripe.com", adref: "mock", contract_type: "full-time", contract_time: "permanent", source: "mock",
   },
   {
-    id: "mock-job-4",
-    title: "Frontend Tailwind CSS Developer",
-    company: { display_name: "Tailwind Labs" },
-    location: { display_name: "Chicago" },
-    description: "Design and implement responsive layout components and modern landing pages using Tailwind CSS, React, and CSS theme tokens. Strong eye for details, typography, and micro-animations is highly desired. This is an on-site role in our Chicago office.",
-    salary_min: 50000,
-    salary_max: 80000,
-    created: new Date(Date.now() - 259200000).toISOString(),
-    redirect_url: "https://tailwindcss.com",
-    adref: "mock"
+    id: "mock-job-4", title: "Frontend Tailwind CSS Developer", company: { display_name: "Tailwind Labs" }, location: { display_name: "Chicago" },
+    description: "Design responsive layouts with Tailwind CSS, React, and CSS tokens. On-site Chicago.", salary_min: 50000, salary_max: 80000,
+    created: new Date(Date.now() - 259200000).toISOString(), redirect_url: "https://tailwindcss.com", adref: "mock", contract_type: "full-time", contract_time: "permanent", source: "mock",
   },
   {
-    id: "mock-job-5",
-    title: "Senior Python Backend Engineer",
-    company: { display_name: "OpenAI" },
-    location: { display_name: "San Francisco" },
-    description: "Build scalable backend APIs and orchestrate AI models. Strong experience with Python, FastAPI, Postgres, and Docker. This is a senior role working on-site to build modern developer platform systems.",
-    salary_min: 120000,
-    salary_max: 180000,
-    created: new Date(Date.now() - 345600000).toISOString(),
-    redirect_url: "https://openai.com",
-    adref: "mock"
-  }
+    id: "mock-job-5", title: "Senior Python Backend Engineer", company: { display_name: "OpenAI" }, location: { display_name: "San Francisco" },
+    description: "Build scalable backend APIs and orchestrate AI models. Python, FastAPI, Postgres, Docker. On-site.", salary_min: 120000, salary_max: 180000,
+    created: new Date(Date.now() - 345600000).toISOString(), redirect_url: "https://openai.com", adref: "mock", contract_type: "full-time", contract_time: "permanent", source: "mock",
+  },
 ];
+
+interface NormalizedJob {
+  id: string;
+  title: string;
+  company: { display_name: string };
+  location: { display_name: string };
+  description: string;
+  salary_min?: number;
+  salary_max?: number;
+  salary_is_predicted?: string;
+  redirect_url: string;
+  created: string;
+  adref: string;
+  source: string;
+  contract_type?: string;
+  contract_time?: string;
+}
+
+function deduplicate(jobs: NormalizedJob[]): NormalizedJob[] {
+  const seen = new Set<string>();
+  return jobs.filter((job) => {
+    const key = `${job.title.toLowerCase()}|${job.company.display_name.toLowerCase()}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+async function fetchAdzuna(what: string, where: string, page: string, country: string, resultsPerPage: string): Promise<{ results: NormalizedJob[]; count: number }> {
+  if (!ADZUNA_APP_ID || !ADZUNA_API_KEY) return { results: [], count: 0 };
+  const url = `${ADZUNA_API_BASE}/${country}/search/${page}?app_id=${ADZUNA_APP_ID}&app_key=${ADZUNA_API_KEY}&what=${encodeURIComponent(what)}&where=${encodeURIComponent(where)}&results_per_page=${resultsPerPage}&content-type=application/json`;
+  try {
+    const resp = await fetch(url);
+    if (resp.status !== 200) return { results: [], count: 0 };
+    const data = await resp.json();
+    const results: NormalizedJob[] = (data.results ?? []).map((r: Record<string, unknown>) => ({
+      id: r.id as string,
+      title: r.title as string,
+      company: r.company as { display_name: string } ?? { display_name: "" },
+      location: r.location as { display_name: string } ?? { display_name: "" },
+      description: r.description as string ?? "",
+      salary_min: r.salary_min as number | undefined,
+      salary_max: r.salary_max as number | undefined,
+      salary_is_predicted: r.salary_is_predicted as string | undefined,
+      redirect_url: r.redirect_url as string ?? "",
+      created: r.created as string ?? new Date().toISOString(),
+      adref: r.adref as string ?? r.id as string,
+      source: "Adzuna",
+      contract_type: r.contract_type as string | undefined,
+      contract_time: r.contract_time as string | undefined,
+    }));
+    return { results, count: data.count as number ?? 0 };
+  } catch {
+    return { results: [], count: 0 };
+  }
+}
+
+async function fetchRemotive(what: string): Promise<NormalizedJob[]> {
+  try {
+    const resp = await fetch(`https://remotive.com/api/remote-jobs?search=${encodeURIComponent(what)}&limit=10`);
+    if (resp.status !== 200) return [];
+    const data = await resp.json();
+    return ((data.jobs as Record<string, unknown>[]) ?? []).map((j) => ({
+      id: `remotive-${j.id}`,
+      title: j.title as string,
+      company: { display_name: j.company_name as string },
+      location: { display_name: (j.candidate_required_location as string) || "Remote" },
+      description: j.description as string ?? "",
+      salary_min: undefined,
+      salary_max: undefined,
+      redirect_url: j.url as string,
+      created: j.publication_date as string ?? new Date().toISOString(),
+      adref: `remotive-${j.id}`,
+      source: "Remotive",
+    }));
+  } catch {
+    return [];
+  }
+}
+
+async function fetchArbeitnow(what: string): Promise<NormalizedJob[]> {
+  try {
+    const resp = await fetch(`https://arbeitnow.com/api/job-board-api?search=${encodeURIComponent(what)}&limit=10`);
+    if (resp.status !== 200) return [];
+    const body = await resp.json();
+    return ((body.data as Record<string, unknown>[]) ?? []).map((j) => ({
+      id: `arbeitnow-${j.slug}`,
+      title: j.title as string,
+      company: { display_name: j.company_name as string },
+      location: { display_name: (j.location as string) || (j.remote ? "Remote" : "Not specified") },
+      description: j.description as string ?? "",
+      salary_min: j.salary_min as number | undefined,
+      salary_max: j.salary_max as number | undefined,
+      redirect_url: j.url as string,
+      created: j.created_at as string ?? new Date().toISOString(),
+      adref: `arbeitnow-${j.slug}`,
+      source: "Arbeitnow",
+    }));
+  } catch {
+    return [];
+  }
+}
+
+function mockFallback(what: string): NormalizedJob[] {
+  const query = what.toLowerCase().trim();
+  return MOCK_JOBS.filter(
+    (job) =>
+      job.title.toLowerCase().includes(query) ||
+      job.company.display_name.toLowerCase().includes(query) ||
+      job.description.toLowerCase().includes(query),
+  );
+}
 
 export default async function handler(req: Request): Promise<Response> {
   if (req.method === "OPTIONS") {
@@ -104,61 +181,35 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   if (!ADZUNA_APP_ID || !ADZUNA_API_KEY) {
-    console.log("[DEBUG] Adzuna API credentials not configured. Serving mock fallback jobs.");
-    const query = what.toLowerCase().trim();
-    const results = MOCK_JOBS.filter(
-      (job) =>
-        job.title.toLowerCase().includes(query) ||
-        job.company.display_name.toLowerCase().includes(query) ||
-        job.description.toLowerCase().includes(query)
-    );
+    console.log("[DEBUG] Adzuna API credentials not configured. Serving mock + global job fallback.");
+    const mockResults = mockFallback(what);
+    const [remotive, arbeitnow] = await Promise.all([fetchRemotive(what), fetchArbeitnow(what)]);
+    const merged = deduplicate([...mockResults, ...remotive, ...arbeitnow]);
     return new Response(
-      JSON.stringify({ results, count: results.length }),
+      JSON.stringify({ results: merged, count: merged.length }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
 
-  const adzunaUrl = `${ADZUNA_API_BASE}/${country}/search/${page}?app_id=${ADZUNA_APP_ID}&app_key=${ADZUNA_API_KEY}&what=${encodeURIComponent(what)}&where=${encodeURIComponent(where)}&results_per_page=${resultsPerPage}&content-type=application/json`;
+  const [adzunaResult, remotive, arbeitnow] = await Promise.all([
+    fetchAdzuna(what, where, page, country, resultsPerPage),
+    page === "1" ? fetchRemotive(what) : Promise.resolve([] as NormalizedJob[]),
+    page === "1" ? fetchArbeitnow(what) : Promise.resolve([] as NormalizedJob[]),
+  ]);
 
-  try {
-    const resp = await fetch(adzunaUrl);
-    console.log(`[DEBUG] Adzuna API fetch status: ${resp.status}`);
-    
-    let results = [];
-    let count = 0;
+  const allResults = deduplicate([...adzunaResult.results, ...remotive, ...arbeitnow]);
+  const count = Math.max(adzunaResult.count, allResults.length);
 
-    if (resp.status === 200) {
-      const data = await resp.json();
-      results = data.results ?? [];
-      count = data.count ?? 0;
-    } else {
-      console.log(`[DEBUG] Adzuna API returned error code ${resp.status}. Serving mock fallback jobs.`);
-      const query = what.toLowerCase().trim();
-      results = MOCK_JOBS.filter(
-        (job) =>
-          job.title.toLowerCase().includes(query) ||
-          job.company.display_name.toLowerCase().includes(query) ||
-          job.description.toLowerCase().includes(query)
-      );
-      count = results.length;
-    }
-
+  if (allResults.length === 0) {
+    console.log("[DEBUG] No results from any source. Serving mock fallback.");
     return new Response(
-      JSON.stringify({ results, count }),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-    );
-  } catch (err) {
-    console.log(`[DEBUG] Fetch failed: ${err.message}. Serving mock fallback jobs.`);
-    const query = what.toLowerCase().trim();
-    const results = MOCK_JOBS.filter(
-      (job) =>
-        job.title.toLowerCase().includes(query) ||
-        job.company.display_name.toLowerCase().includes(query) ||
-        job.description.toLowerCase().includes(query)
-    );
-    return new Response(
-      JSON.stringify({ results, count: results.length }),
+      JSON.stringify({ results: mockFallback(what), count: 0 }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
+
+  return new Response(
+    JSON.stringify({ results: allResults, count }),
+    { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+  );
 }

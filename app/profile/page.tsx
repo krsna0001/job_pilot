@@ -3,6 +3,7 @@ import { createInsforgeServer } from "../../lib/insforge-server";
 import AuthenticatedHeader from "../components/AuthenticatedHeader";
 import ProfileAttentionBanner from "./components/ProfileAttentionBanner";
 import ProfilePageClient from "./components/ProfilePageClient";
+import ManageSubscriptionButton from "./components/ManageSubscriptionButton";
 import SignOutButton from "../components/SignOutButton";
 
 export default async function ProfilePage() {
@@ -55,6 +56,11 @@ export default async function ProfilePage() {
           />
 
           <ProfilePageClient userId={user.id} />
+
+          <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Billing</p>
+            <ManageSubscriptionButton userId={user.id} />
+          </div>
 
           <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md">
             <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Session</p>

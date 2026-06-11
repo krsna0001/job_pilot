@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Saved job not found" }, { status: 404 });
   }
 
-  const jobData = savedJob.job_data as { title: string; description: string };
+  const jobData = savedJob.job_data as { id?: string; title: string; description: string };
 
   const { data: profile } = await insforge.database
     .from("profiles")
@@ -44,6 +44,15 @@ export async function POST(request: NextRequest) {
   );
 
   const runStart = Date.now();
+  
+  // Cache the skills breakdown back to the master jobs table for fast subsequent loads
+  if (jobData.id) {
+    await insforge.database
+      .from("jobs")
+      .update({ skills_breakdown: result })
+      .eq("source_id", jobData.id);
+  }
+
   const { data: run } = await insforge.database
     .from("agent_runs")
     .insert([{

@@ -65,22 +65,33 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
   const [githubUrl, setGithubUrl] = useState("");
   const [linkedinUrl, setLinkedinUrl] = useState("");
 
-  // 2. Professional (Skills Tag Input)
+  // 2. Location
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [remotePref, setRemotePref] = useState("onsite");
+  const [workAuth, setWorkAuth] = useState("");
+
+  // 3. Professional (Skills Tag Input)
   const [skills, setSkills] = useState<string[]>([]);
   const [skillInput, setSkillInput] = useState("");
 
-  // 3. Work Experience
+  // 4. Work Experience
   const [experience, setExperience] = useState<ExperienceEntry[]>([]);
 
-  // 4. Education
+  // 5. Education
   const [education, setEducation] = useState<EducationEntry[]>([]);
 
-  // 5. Job Preferences
+  // 6. Job Preferences
   const [prefRole, setPrefRole] = useState("");
   const [prefLocations, setPrefLocations] = useState<string[]>([]);
   const [locationInput, setLocationInput] = useState("");
   const [prefJobTypes, setPrefJobTypes] = useState<string[]>([]);
   const [salaryExpectation, setSalaryExpectation] = useState("");
+
+  // 7. Settings
+  const [emailAlertsEnabled, setEmailAlertsEnabled] = useState(false);
+  const [emailAlertsFrequency, setEmailAlertsFrequency] = useState("daily");
 
   useEffect(() => {
     if (userId) {
@@ -109,6 +120,11 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
         setBio(profile.bio || "");
         setGithubUrl(profile.github_url || "");
         setLinkedinUrl(profile.linkedin_url || "");
+        setCountry(profile.country || "");
+        setCity(profile.city || "");
+        setState(profile.state || "");
+        setRemotePref(profile.remote_preference || "onsite");
+        setWorkAuth(profile.work_authorization || "");
         setSkills(Array.isArray(profile.skills) ? profile.skills : []);
         setExperience(Array.isArray(profile.experience) ? profile.experience : []);
         setEducation(Array.isArray(profile.education) ? profile.education : []);
@@ -120,6 +136,9 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
           setPrefJobTypes(Array.isArray(prefs.jobTypes) ? prefs.jobTypes : []);
           setSalaryExpectation(prefs.salaryExpectation || "");
         }
+
+        setEmailAlertsEnabled(profile.email_alerts_enabled || false);
+        setEmailAlertsFrequency(profile.email_alerts_frequency || "daily");
       }
     } catch (err) {
       console.error("Error loading profile:", err);
@@ -247,12 +266,19 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
             name,
             headline,
             bio,
+            country,
+            city,
+            state,
+            remote_preference: remotePref,
+            work_authorization: workAuth,
             skills,
             experience,
             education,
             job_preferences: jobPreferences,
             github_url: githubUrl,
             linkedin_url: linkedinUrl,
+            email_alerts_enabled: emailAlertsEnabled,
+            email_alerts_frequency: emailAlertsFrequency,
           },
           { onConflict: "user_id" },
         );
@@ -283,6 +309,9 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
       if (data.education.length > 0) setEducation(data.education);
       if (data.github_url) setGithubUrl(data.github_url);
       if (data.linkedin_url) setLinkedinUrl(data.linkedin_url);
+      if (data.country) setCountry(data.country);
+      if (data.city) setCity(data.city);
+      if (data.remote_preference) setRemotePref(data.remote_preference);
       if (data.job_preferences.roleTitle) {
         setPrefRole(data.job_preferences.roleTitle);
         if (data.job_preferences.locations.length > 0) setPrefLocations(data.job_preferences.locations);
@@ -362,9 +391,83 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
         </div>
       </div>
 
-      {/* 2. Professional Skills */}
+      {/* 2. Location & Work Details */}
       <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md">
         <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Section 2</p>
+        <h3 className="text-lg font-semibold text-text-darkest mb-6">Location & Work Details</h3>
+        <div className="grid gap-6 sm:grid-cols-3">
+          <div>
+            <label className="block text-sm font-semibold text-text-darkest">Country</label>
+            <input
+              type="text"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className="mt-2 block w-full rounded-xl border border-border bg-surface-secondary px-4 py-2.5 text-sm text-text-primary focus:border-accent focus:outline-none"
+              placeholder="e.g. United States"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-text-darkest">City</label>
+            <input
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className="mt-2 block w-full rounded-xl border border-border bg-surface-secondary px-4 py-2.5 text-sm text-text-primary focus:border-accent focus:outline-none"
+              placeholder="e.g. San Francisco"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-text-darkest">State / Region</label>
+            <input
+              type="text"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              className="mt-2 block w-full rounded-xl border border-border bg-surface-secondary px-4 py-2.5 text-sm text-text-primary focus:border-accent focus:outline-none"
+              placeholder="e.g. California"
+            />
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          <div>
+            <label className="block text-sm font-semibold text-text-darkest mb-3">Work Preference</label>
+            <div className="flex flex-wrap gap-3">
+              {[
+                { value: "onsite", label: "On-site" },
+                { value: "hybrid", label: "Hybrid" },
+                { value: "remote", label: "Remote Only" },
+              ].map((opt) => (
+                <button
+                  type="button"
+                  key={opt.value}
+                  onClick={() => setRemotePref(opt.value)}
+                  className={`rounded-xl border px-4 py-2 text-xs font-semibold transition ${
+                    remotePref === opt.value
+                      ? "border-accent bg-accent-light text-accent"
+                      : "border-border bg-surface-secondary text-text-secondary hover:border-accent/40"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-text-darkest">Work Authorization</label>
+            <input
+              type="text"
+              value={workAuth}
+              onChange={(e) => setWorkAuth(e.target.value)}
+              className="mt-2 block w-full rounded-xl border border-border bg-surface-secondary px-4 py-2.5 text-sm text-text-primary focus:border-accent focus:outline-none"
+              placeholder="e.g. US Citizen, EU Passport, Visa Required"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Professional Skills */}
+      <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md">
+        <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Section 3</p>
         <h3 className="text-lg font-semibold text-text-darkest mb-2">Professional Skills</h3>
         <p className="text-sm text-text-secondary mb-6">
           Add skills that highlight your expertise. Press Enter or comma to create a tag.
@@ -400,11 +503,11 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
         </div>
       </div>
 
-      {/* 3. Work Experience */}
+      {/* 4. Work Experience */}
       <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md">
         <div className="flex items-center justify-between gap-4 mb-6">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Section 3</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Section 4</p>
             <h3 className="text-lg font-semibold text-text-darkest">Work Experience</h3>
           </div>
           <button
@@ -552,7 +655,7 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
       <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md">
         <div className="flex items-center justify-between gap-4 mb-6">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Section 4</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Section 5</p>
             <h3 className="text-lg font-semibold text-text-darkest">Education</h3>
           </div>
           <button
@@ -688,7 +791,7 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
 
       {/* 5. Job Preferences */}
       <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md">
-        <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Section 5</p>
+        <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Section 6</p>
         <h3 className="text-lg font-semibold text-text-darkest mb-6">Job Preferences</h3>
 
         <div className="grid gap-6 sm:grid-cols-2">
@@ -766,6 +869,52 @@ const ProfileForm = forwardRef<ProfileFormHandle, ProfileFormProps>(function Pro
               })}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* 6. Settings */}
+      <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-sm transition hover:shadow-md">
+        <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Section 7</p>
+        <h3 className="text-lg font-semibold text-text-darkest mb-6">Settings & Notifications</h3>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div className="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="email-alerts-enabled"
+              checked={emailAlertsEnabled}
+              onChange={(e) => setEmailAlertsEnabled(e.target.checked)}
+              className="h-5 w-5 rounded border-border text-accent focus:ring-accent"
+            />
+            <label htmlFor="email-alerts-enabled" className="text-sm font-semibold text-text-darkest select-none">
+              Enable Scheduled Email Alerts
+            </label>
+          </div>
+
+          {emailAlertsEnabled && (
+            <div>
+              <label className="block text-sm font-semibold text-text-darkest mb-3">Alert Frequency</label>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { value: "daily", label: "Daily" },
+                  { value: "weekly", label: "Weekly" },
+                ].map((opt) => (
+                  <button
+                    type="button"
+                    key={opt.value}
+                    onClick={() => setEmailAlertsFrequency(opt.value)}
+                    className={`rounded-xl border px-4 py-2 text-xs font-semibold transition ${
+                      emailAlertsFrequency === opt.value
+                        ? "border-accent bg-accent-light text-accent"
+                        : "border-border bg-surface-secondary text-text-secondary hover:border-accent/40"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

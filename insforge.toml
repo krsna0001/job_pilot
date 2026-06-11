@@ -2,7 +2,22 @@
 # IMPORTANT: Any URL used as redirectTo in signInWithOAuth() MUST appear in this list.
 # Primary callback: /api/auth/callback (server-side code exchange)
 # Do NOT remove /api/auth/callback \u2014 LoginCard.tsx depends on it.
-allowed_redirect_urls = ["http://localhost:3000/login", "http://localhost:3000/dashboard", "http://localhost:3000/find-jobs", "http://localhost:3000/profile", "http://localhost:3000/api/auth/callback", "https://job-pilot-deployment.vercel.app/dashboard", "https://job-pilot-deployment.vercel.app/find-jobs", "https://job-pilot-deployment.vercel.app/profile", "https://job-pilot-deployment.vercel.app/api/auth/callback"]
+allowed_redirect_urls = [
+  "http://localhost:3000/login",
+  "http://localhost:3000/dashboard",
+  "http://localhost:3000/find-jobs",
+  "http://localhost:3000/profile",
+  "http://localhost:3000/api/auth/callback",
+  "https://job-pilot-deployment.vercel.app/dashboard",
+  "https://job-pilot-deployment.vercel.app/find-jobs",
+  "https://job-pilot-deployment.vercel.app/profile",
+  "https://job-pilot-deployment.vercel.app/api/auth/callback",
+  "https://59m666gk.insforge.site/login",
+  "https://59m666gk.insforge.site/dashboard",
+  "https://59m666gk.insforge.site/find-jobs",
+  "https://59m666gk.insforge.site/profile",
+  "https://59m666gk.insforge.site/api/auth/callback"
+]
 require_email_verification = true
 verify_email_method = "code"
 reset_password_method = "code"

@@ -1,0 +1,3 @@
+ALTER TABLE saved_jobs
+  ADD COLUMN IF NOT EXISTS cover_letter TEXT,
+  ADD COLUMN IF NOT EXISTS applied_at TIMESTAMPTZ;

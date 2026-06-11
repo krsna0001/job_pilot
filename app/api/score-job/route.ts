@@ -23,5 +23,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }
 
-  return NextResponse.json({ score: result.score });
+  return NextResponse.json({ score: result.score, reasoning: result.reasoning });
 }

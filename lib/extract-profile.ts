@@ -9,6 +9,9 @@ export interface ExtractedProfile {
   name: string;
   headline: string;
   bio: string;
+  country?: string;
+  city?: string;
+  remote_preference?: string;
   skills: string[];
   experience: {
     title: string;
@@ -49,6 +52,8 @@ export async function extractProfileFromResume(
   "name": "Full name",
   "headline": "Current title",
   "bio": "Summary (2-3 sentences)",
+  "country": "Country from resume",
+  "city": "City from resume",
   "skills": ["skill1", "skill2"],
   "experience": [{ "title": "", "company": "", "location": "", "startMonth": "", "startYear": "", "endMonth": "", "endYear": "", "current": false, "description": "" }],
   "education": [{ "school": "", "degree": "", "field": "", "startMonth": "", "startYear": "", "endMonth": "", "endYear": "", "current": false }],

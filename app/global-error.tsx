@@ -1,13 +1,5 @@
 'use client';
 
-import { Inter } from "next/font/google";
-import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
 export default function GlobalError({
   error,
   reset,
@@ -16,8 +8,8 @@ export default function GlobalError({
   reset: () => void;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background text-text-primary">
+    <html lang="en" className="h-full antialiased">
+      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans">
         <main className="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-12">
           <section className="relative overflow-hidden rounded-[2rem] border border-border bg-surface p-10 shadow-xl sm:p-12">
             <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-error/5 blur-3xl" />

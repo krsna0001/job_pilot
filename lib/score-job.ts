@@ -87,7 +87,78 @@ Return ONLY a JSON object with two fields:
   }
 }
 
-export async function scoreAndSaveJob(savedJobId: string, userId: string): Promise<{ score: number } | { error: string }> {
+export async function batchScoreJobs(
+  jobs: { id: string; title: string; company: string; description: string; location?: string; salary_min?: number; salary_max?: number }[],
+  profile: ProfileInput,
+): Promise<Record<string, number>> {
+  if (jobs.length === 0) return {};
+
+  const skillsText = profile.skills.length > 0 ? profile.skills.join(", ") : "Not specified";
+  const experienceText =
+    profile.experience.length > 0
+      ? profile.experience.map((e) => `${e.title ?? "Unknown role"} at ${e.company ?? "Unknown company"}${e.description ? `: ${e.description}` : ""}`).join("\n")
+      : "Not specified";
+  const educationText =
+    profile.education.length > 0
+      ? profile.education.map((e) => `${e.degree ?? "Degree"} in ${e.field ?? "Unknown field"} from ${e.school ?? "Unknown school"}`).join("\n")
+      : "Not specified";
+
+  const jobsList = jobs.map((j, i) =>
+    `Job ${i + 1} (id: "${j.id}"):
+- Title: ${j.title}
+- Company: ${j.company}
+- Location: ${j.location ?? "Not specified"}
+- Salary: ${j.salary_min && j.salary_max ? `${j.salary_min} - ${j.salary_max}` : "Not specified"}
+- Description: ${j.description.slice(0, 300)}`
+  ).join("\n\n");
+
+  const prompt = `You are a job match analyst. Compare each job below against the candidate's profile and return a match score from 0 to 100 for each job.
+
+Candidate Profile:
+- Headline: ${profile.headline ?? "Not specified"}
+- Bio: ${profile.bio ?? "Not specified"}
+- Skills: ${skillsText}
+- Experience:
+${experienceText}
+- Education:
+${educationText}
+
+${jobsList}
+
+Return ONLY a JSON object mapping job IDs to scores like this:
+{
+  "job-id-1": 85,
+  "job-id-2": 42
+}`;
+
+  const completion = await openai.chat.completions.create({
+    model: process.env.OPENROUTER_CHAT_MODEL ?? "openai/gpt-4o",
+    messages: [
+      { role: "system", content: "You are a precise job match analyst. Return only valid JSON." },
+      { role: "user", content: prompt },
+    ],
+    max_completion_tokens: 400 + jobs.length * 50,
+    temperature: 0.3,
+  });
+
+  const raw = completion.choices[0]?.message?.content ?? "{}";
+
+  try {
+    const parsed = JSON.parse(raw);
+    const scores: Record<string, number> = {};
+    for (const job of jobs) {
+      const rawScore = parsed[job.id];
+      scores[job.id] = rawScore !== undefined
+        ? Math.min(100, Math.max(0, Math.round(rawScore)))
+        : 0;
+    }
+    return scores;
+  } catch {
+    return Object.fromEntries(jobs.map((j) => [j.id, 0]));
+  }
+}
+
+export async function scoreAndSaveJob(savedJobId: string, userId: string): Promise<{ score: number; reasoning: string } | { error: string }> {
   const insforge = await createInsforgeServer();
 
   const { data: savedJob } = await insforge.database
@@ -156,8 +227,8 @@ export async function scoreAndSaveJob(savedJobId: string, userId: string): Promi
 
   await insforge.database
     .from("saved_jobs")
-    .update({ match_score: result.score })
+    .update({ match_score: result.score, match_reasoning: result.reasoning })
     .eq("id", savedJobId);
 
-  return { score: result.score };
+  return { score: result.score, reasoning: result.reasoning };
 }

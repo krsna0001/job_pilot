@@ -89,9 +89,82 @@ body {
   background-color: var(--color-background);
   color: var(--color-text-primary);
   transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── Shared animations ─── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-16px) scale(0.98); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes bounce-in {
+  0%   { opacity: 0; transform: scale(0.9) translateY(8px); }
+  60%  { opacity: 1; transform: scale(1.02) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes pulse-border {
+  0%, 100% { border-color: var(--color-accent); box-shadow: 0 0 0 0 rgba(124, 92, 252, 0.3); }
+  50%      { border-color: var(--color-accent); box-shadow: 0 0 0 4px rgba(124, 92, 252, 0); }
+}
 
+.animate-fade-in   { animation: fade-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.animate-fade-in-up   { animation: fade-in-up 0.35s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.animate-fade-in-down { animation: fade-in-down 0.25s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.animate-scale-in  { animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.animate-slide-in-left { animation: slide-in-left 0.4s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.animate-bounce-in { animation: bounce-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.animate-pulse-border { animation: pulse-border 2s ease-in-out infinite; }
+
+/* Staggered delay helpers */
+.delay-1 { animation-delay: 50ms; }
+.delay-2 { animation-delay: 100ms; }
+.delay-3 { animation-delay: 150ms; }
+.delay-4 { animation-delay: 200ms; }
+.delay-5 { animation-delay: 250ms; }
+.delay-6 { animation-delay: 300ms; }
+.delay-7 { animation-delay: 350ms; }
+.delay-8 { animation-delay: 400ms; }
+.delay-9 { animation-delay: 450ms; }
+.delay-10 { animation-delay: 500ms; }
+
+/* Shimmer skeleton for loading states */
+.skeleton-shimmer {
+  background: linear-gradient(90deg, var(--color-surface-secondary) 25%, var(--color-surface-tertiary) 50%, var(--color-surface-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Job card entrance with stagger variable */
+.job-card-enter {
+  animation: fade-in-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: var(--entrance-delay, 0ms);
+}
+
+/* Realtime job highlight ring */
+.realtime-new {
+  animation: bounce-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) both, pulse-border 2s ease-in-out 2;
+}
 
 .animate-theme-transition {
   transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),

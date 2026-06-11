@@ -34,24 +34,24 @@
 | 2.8 | `jobs` table | ✅ | Master job catalog + AI enrichment |
 | 2.9 | `agent_runs` table | ✅ | AI execution tracking |
 | 2.10 | `agent_logs` table | ✅ | Audit trail |
-| 2.11 | Job status tracking UI | ⏳ | saved → applied → interviewing → rejected |
+| 2.11 | Job status tracking UI | ✅ | saved → applied → interviewing → rejected |
 
 ## Phase 3: AI Features
 
 | # | Feature | Status | Notes |
 |---|---------|--------|-------|
-| 3.1 | AI match scoring | ⏳ | Compare jobs vs user profile via OpenRouter |
-| 3.2 | Skills breakdown | ⏳ | Extract skills from job + profile |
-| 3.3 | Company dossiers | ⏳ | AI research briefs from public pages |
-| 3.4 | Profile enrichment | ⏳ | Upload resume, extract skills |
+| 3.1 | AI match scoring | ✅ | Compare jobs vs user profile via OpenRouter |
+| 3.2 | Skills breakdown | ✅ | Extract skills from job + profile |
+| 3.3 | Company dossiers | ✅ | AI research briefs from public pages |
+| 3.4 | Profile enrichment | ✅ | Upload resume, extract skills |
 
 ## Phase 4: Polish & Deploy
 
 | # | Feature | Status | Notes |
 |---|---------|--------|-------|
-| 4.1 | Error boundaries | ⏳ | |
-| 4.2 | Loading states | ⏳ | |
-| 4.3 | Responsive audit | ⏳ | |
+| 4.1 | Error boundaries | ✅ | |
+| 4.2 | Loading states | ✅ | Next.js loading.tsx files added to core routes |
+| 4.3 | Responsive audit | ⏳ | Needs final mobile pass |
 | 4.4 | Vercel deploy | ⏳ | Via InsForge deployments |
 | 4.5 | Performance audit | ⏳ | |
 
@@ -59,6 +59,6 @@
 
 | # | Feature | Status | Notes |
 |---|---------|--------|-------|
-| 5.1 | Realtime notifications | ⏳ | New job matches |
-| 5.2 | Email alerts | ⏳ | Scheduled job alerts |
-| 5.3 | Payments / subscriptions | ⏳ | Stripe via InsForge |
+| 5.1 | Realtime notifications | ✅ | InsForge realtime subscriptions for `alert_notifications` |
+| 5.2 | Email alerts | ✅ | Daily/weekly cron jobs |
+| 5.3 | Payments / subscriptions | ✅ | Stripe via InsForge |

@@ -11,6 +11,9 @@ export default async function FindJobsPage() {
   let statusCounts = { saved: 0, applied: 0, interviewing: 0 };
   let initialSavedIds: string[] = [];
   let initialProfileLocations: string[] = [];
+  let initialCountry = "";
+  let initialCity = "";
+  let initialRemotePref = "onsite";
 
   if (user) {
     const { data: jobs } = await insforge.database
@@ -30,13 +33,17 @@ export default async function FindJobsPage() {
 
     const { data: profile } = await insforge.database
       .from("profiles")
-      .select("job_preferences")
+      .select("job_preferences, country, city, remote_preference")
       .eq("user_id", user.id)
       .maybeSingle();
 
-    if (profile && profile.job_preferences) {
-      const prefs = profile.job_preferences as { locations?: string[] };
-      if (Array.isArray(prefs.locations)) {
+    if (profile) {
+      initialCountry = profile.country || "";
+      initialCity = profile.city || "";
+      initialRemotePref = profile.remote_preference || "onsite";
+
+      const prefs = profile.job_preferences as { locations?: string[] } | null;
+      if (prefs && Array.isArray(prefs.locations)) {
         initialProfileLocations = prefs.locations;
       }
     }
@@ -57,6 +64,9 @@ export default async function FindJobsPage() {
             initialStatusCounts={statusCounts}
             initialSavedIds={initialSavedIds}
             initialProfileLocations={initialProfileLocations}
+            initialCountry={initialCountry}
+            initialCity={initialCity}
+            initialRemotePref={initialRemotePref}
           />
         </div>
       </main>

@@ -1,0 +1,10 @@
+const cheerio = require('cheerio');
+const fs = require('fs');
+const html = fs.readFileSync('internshala.html', 'utf8');
+const $ = cheerio.load(html);
+console.log('Total divs:', $('div').length);
+console.log('Jobs:', $('.individual_internship').length);
+const firstEl = $('.individual_internship').first();
+console.log('h3 HTML:', firstEl.find('h3').html());
+console.log('h3 class:', firstEl.find('h3').attr('class'));
+console.log('title text:', firstEl.find('.job-internship-name').text().trim());
