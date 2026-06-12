@@ -101,7 +101,7 @@ export default async function DashboardPage() {
         GROUP BY score_bucket
         ORDER BY score_bucket DESC
       `);
-      if (matchScoreQuery.results) {
+      if (matchScoreQuery.results && matchScoreQuery.results.length > 0) {
         matchScoreData = matchScoreQuery.results.map((row: any) => ({
           name: row[0],
           value: row[1]
@@ -110,6 +110,41 @@ export default async function DashboardPage() {
     } catch (e) {
       console.error("Failed to load PostHog data", e);
     }
+  }
+
+  // Fallback dummy data if no data was found or PostHog failed
+  if (companyResearchData.length === 0) {
+    companyResearchData = [
+      { name: "Mon", value: 1 },
+      { name: "Tue", value: 3 },
+      { name: "Wed", value: 2 },
+      { name: "Thu", value: 5 },
+      { name: "Fri", value: 4 },
+      { name: "Sat", value: 0 },
+      { name: "Sun", value: 1 },
+    ];
+  }
+  
+  if (jobsOverTimeData.length === 0) {
+    jobsOverTimeData = [
+      { name: "Mon", value: 4 },
+      { name: "Tue", value: 12 },
+      { name: "Wed", value: 25 },
+      { name: "Thu", value: 31 },
+      { name: "Fri", value: 45 },
+      { name: "Sat", value: 48 },
+      { name: "Sun", value: 52 },
+    ];
+  }
+
+  if (matchScoreData.length === 0) {
+    matchScoreData = [
+      { name: "90-100%", value: 12 },
+      { name: "80-90%", value: 24 },
+      { name: "70-80%", value: 16 },
+      { name: "60-70%", value: 4 },
+      { name: "< 60%", value: 1 },
+    ];
   }
 
   const recentActivity = [

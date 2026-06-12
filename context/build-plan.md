@@ -51,9 +51,9 @@
 |---|---------|--------|-------|
 | 4.1 | Error boundaries | ✅ | |
 | 4.2 | Loading states | ✅ | Next.js loading.tsx files added to core routes |
-| 4.3 | Responsive audit | ⏳ | Needs final mobile pass |
-| 4.4 | Vercel deploy | ⏳ | Via InsForge deployments |
-| 4.5 | Performance audit | ⏳ | |
+| 4.3 | Responsive audit | ✅ | Final mobile pass complete |
+| 4.4 | Vercel deploy | ✅ | Remote deployment build issues resolved |
+| 4.5 | Performance audit | ✅ | Next.js optimizations verified |
 
 ## Phase 5: Post-Launch
 

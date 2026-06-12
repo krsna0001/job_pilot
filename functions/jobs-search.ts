@@ -1,6 +1,6 @@
 const ADZUNA_API_BASE = "https://api.adzuna.com/v1/api/jobs";
 const ADZUNA_APP_ID = Deno.env.get("ADZUNA_APP_ID") ?? "";
-const ADZUNA_API_KEY = Deno.env.get("ADZUNA_API_KEY") ?? "";
+const ADZUNA_API_KEY = Deno.env.get("ADZUNA_APP_KEY") ?? Deno.env.get("ADZUNA_API_KEY") ?? "";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -65,7 +65,7 @@ function deduplicate(jobs: NormalizedJob[]): NormalizedJob[] {
 
 async function fetchAdzuna(what: string, where: string, page: string, country: string, resultsPerPage: string): Promise<{ results: NormalizedJob[]; count: number }> {
   if (!ADZUNA_APP_ID || !ADZUNA_API_KEY) return { results: [], count: 0 };
-  const url = `${ADZUNA_API_BASE}/${country}/search/${page}?app_id=${ADZUNA_APP_ID}&app_key=${ADZUNA_API_KEY}&what=${encodeURIComponent(what)}&where=${encodeURIComponent(where)}&results_per_page=${resultsPerPage}&content-type=application/json`;
+  const url = `${ADZUNA_API_BASE}/${country}/search/${page}?app_id=${ADZUNA_APP_ID}&app_key=${ADZUNA_API_KEY}&what=${encodeURIComponent(what)}&where=${encodeURIComponent(where)}&results_per_page=${resultsPerPage}&sort_by=date&content-type=application/json`;
   try {
     const resp = await fetch(url);
     if (resp.status !== 200) return { results: [], count: 0 };
@@ -157,7 +157,7 @@ export default async function handler(req: Request): Promise<Response> {
   let where = "";
   let page = "1";
   let country = "gb";
-  let resultsPerPage = "20";
+  let resultsPerPage = "50";
 
   const url = new URL(req.url);
 
@@ -198,6 +198,10 @@ export default async function handler(req: Request): Promise<Response> {
   ]);
 
   const allResults = deduplicate([...adzunaResult.results, ...remotive, ...arbeitnow]);
+  
+  // Always sort recent listings to the top
+  allResults.sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
+
   const count = Math.max(adzunaResult.count, allResults.length);
 
   if (allResults.length === 0) {
