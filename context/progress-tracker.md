@@ -162,3 +162,12 @@
 | 5.31 | Added Stripe checkout success page | `app/pricing/success/page.tsx` |
 | 5.32 | Added Billing section in Profile page for Stripe Customer Portal | `app/profile/page.tsx`, `ManageSubscriptionButton.tsx` |
 | 5.33 | Added global Upgrade to Pro CTA in AuthenticatedHeader | `app/components/AuthenticatedHeader.tsx` |
+
+### Session 33 — RemoteOK Reliability Fixes (2026-06-27)
+
+| # | Change | Files |
+|---|--------|-------|
+| 5.34 | Fixed RemoteOK `?tag=` multi-word bug — added `extractPrimaryTag()` to extract single keyword | `functions/jobs-search.ts` |
+| 5.35 | Upgraded RemoteOK fetch headers (Referer, Accept-Language, Pragma) to reduce Cloudflare 403s | `functions/jobs-search.ts`, `app/api/jobs/sync/route.ts` |
+| 5.36 | Auto-sync on Find Jobs page mount — users see fresh jobs instantly without clicking Sync | `app/find-jobs/components/SearchDashboard.tsx` |
+| 5.37 | Error toast with Retry button shown when sync fails — replaces silent console.error | `app/find-jobs/components/SearchDashboard.tsx` |
