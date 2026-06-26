@@ -138,27 +138,38 @@ async function fetchArbeitnow(what: string): Promise<NormalizedJob[]> {
   }
 }
 
+function extractPrimaryTag(what: string): string {
+  const stopWords = new Set(["and", "or", "the", "a", "an", "for", "in", "at", "to", "of", "with", "on", "is"]);
+  const words = what.trim().toLowerCase().split(/\s+/);
+  const keyword = words.find((w) => w.length > 2 && !stopWords.has(w)) ?? words[0] ?? "developer";
+  return keyword;
+}
+
 async function fetchRemoteOK(what: string): Promise<NormalizedJob[]> {
+  const tag = extractPrimaryTag(what);
   try {
-    const resp = await fetch(`https://remoteok.com/api?tag=${encodeURIComponent(what)}`, {
+    const resp = await fetch(`https://remoteok.com/api?tag=${encodeURIComponent(tag)}`, {
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "application/json"
-      }
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://remoteok.com/",
+        "Cache-Control": "no-cache",
+      },
     });
     if (resp.status !== 200) return [];
     const data = await resp.json();
     const rawJobs = Array.isArray(data) ? data.slice(1, 11) : [];
-    return rawJobs.map((j: any) => ({
+    return rawJobs.map((j: Record<string, unknown>) => ({
       id: `remoteok-${j.id}`,
       title: j.position as string,
       company: { display_name: j.company as string },
-      location: { display_name: j.location as string || "Remote" },
-      description: j.description as string ?? "",
-      salary_min: j.salary_min || undefined,
-      salary_max: j.salary_max || undefined,
-      redirect_url: j.apply_url || j.url || "",
-      created: j.date || new Date(j.epoch * 1000).toISOString(),
+      location: { display_name: (j.location as string) || "Remote" },
+      description: (j.description as string) ?? "",
+      salary_min: (j.salary_min as number) || undefined,
+      salary_max: (j.salary_max as number) || undefined,
+      redirect_url: (j.apply_url as string) || (j.url as string) || "",
+      created: (j.date as string) || new Date((j.epoch as number) * 1000).toISOString(),
       adref: `remoteok-${j.id}`,
       source: "RemoteOK",
     }));
