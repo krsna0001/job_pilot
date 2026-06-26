@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { createInsforgeServer } from "@/lib/insforge-server";
 import AuthenticatedHeader from "../components/AuthenticatedHeader";
 import SavedJobsList from "./SavedJobsList";
@@ -6,6 +7,10 @@ export default async function SavedJobsPage() {
   const insforge = await createInsforgeServer();
   const { data, error } = await insforge.auth.getCurrentUser();
   const user = data?.user;
+
+  if (!user) {
+    redirect("/login");
+  }
 
   let savedJobs: {
     id: string;

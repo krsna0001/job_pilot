@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { createInsforgeServer } from "../../lib/insforge-server";
 import AuthenticatedHeader from "../components/AuthenticatedHeader";
 import AlertsPageClient from "./AlertsPageClient";
@@ -6,6 +7,10 @@ export default async function AlertsPage() {
   const insforge = await createInsforgeServer();
   const { data, error } = await insforge.auth.getCurrentUser();
   const user = data?.user;
+
+  if (!user) {
+    redirect("/login");
+  }
 
   let alerts: any[] = [];
 

@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const ACCESS_TOKEN_COOKIE = "insforge_access_token";
 const REFRESH_TOKEN_COOKIE = "insforge_refresh_token";
 
-const PROTECTED_ROUTES = ["/dashboard", "/profile", "/saved-jobs"];
+const PROTECTED_ROUTES = ["/dashboard", "/profile", "/saved-jobs", "/alerts", "/salary-insights"];
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -28,5 +28,12 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/profile/:path*", "/find-jobs/:path*", "/saved-jobs/:path*"],
+  matcher: [
+    "/dashboard/:path*",
+    "/profile/:path*",
+    "/find-jobs/:path*",
+    "/saved-jobs/:path*",
+    "/alerts/:path*",
+    "/salary-insights/:path*",
+  ],
 };

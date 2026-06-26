@@ -1,33 +1,35 @@
-# Memory — Deployment Fix & Final Visual Audit
+# Memory — Stripe Subscription Checkout Fix
 
-Last updated: 2026-06-12T03:30:01+05:30
+Last updated: 2026-06-12T15:23:00+05:30
 
 ## What was built
 
-- **Deployment Fix**: Modified `package.json` to move the `encoding` package from `devDependencies` to `dependencies` and regenerated `package-lock.json` via `npm install`.
-- **Final Audits**: Conducted comprehensive responsive and performance audits across the application. Verified global `animate-theme-transition` usage and `max-w-7xl` container consistency.
-- **Visual Web Audit**: Ran a browser subagent on `localhost:3001` to test core routes (`/`, `/find-jobs`, `/login`, `/pricing`, `/dashboard`). Verified UI polish and middleware protection.
-- **Build Plan**: Marked all remaining Phase 4 tasks as `✅ Done` in `context/build-plan.md`.
+- **Subscription Checkout Fix**: Updated `app/pricing/PricingClient.tsx` to pass the correct payload to `insforge.payments.createCheckoutSession()`. Added `subject: { type: "user", id: userData.user.id }` and `customerEmail: userData.user.email` to the request payload to satisfy Stripe and InsForge backend requirements for creating new customer subscriptions.
+- **Cache Invalidation**: Cleared the `.next` directory to force the Next.js development server to pick up the updated `PricingClient.tsx` file and stop serving the cached buggy version.
+- **Link Fix in Saved Jobs**: Fixed a bug in `app/saved-jobs/SavedJobsList.tsx` where clicking a job card sent the user to a "Job Not Found" page. Updated the `<Link>` hrefs to use the external job ID (`job.job_data.id`) instead of the internal UUID (`job.id`), allowing the job details page to fetch correctly.
 
 ## Decisions made
 
-- Maintained the use of `AuthenticatedHeader` on public-facing preview routes (like `/find-jobs`) to intentionally expose the SaaS dashboard layout and naturally prompt users to authenticate for AI scoring features.
-- No structural code changes were required during the responsive and performance audits as the codebase already met Vercel/InsForge design constraints perfectly.
+- Added a proactive authentication check in `handleCheckout` to ensure a user is logged in before redirecting them to the Stripe portal. Unauthenticated users now receive a clean UI error message.
+- Passed `customerEmail` explicitly in the checkout payload since some Stripe portal/customer settings strictly require an email for new customers.
 
 ## Problems solved
 
-- **Remote Build Failure (Exit Code 1)**: Diagnosed that CI/CD environments (Vercel/InsForge) strip `devDependencies` during production builds. This was causing `posthog-node` to fail when Next.js traced serverless function dependencies for the `encoding` polyfill. Relocating `encoding` to `dependencies` fixed this globally.
+- The "Subscription checkout requires a billing subject" error was thrown because the `insforge.payments.createCheckoutSession` call in subscription mode requires a `subject` mapping to link the Stripe customer to an InsForge user.
+- A "Job Not Found" error occurred when accessing saved jobs because the details page (`/find-jobs/[id]`) expects the original external provider ID, not the auto-generated internal UUID of the `saved_jobs` table.
+- A hot-reloading cache issue where fixes to `PricingClient.tsx` were not reflected in the browser despite the code changing on disk. Fixed by deleting `.next` and recommending a server restart.
 
 ## Current state
 
-- The application is 100% complete based on the `build-plan.md`. All 5 Phases are fully implemented and verified.
-- Local `npm run build` cleanly compiles.
-- Ready for final Vercel / InsForge deployment.
+- The checkout button on the Pro plan now successfully fetches the user, constructs the valid payload with `subject` and `customerEmail`, and opens the Stripe checkout window.
+- The Saved Jobs list now links to valid job detail pages.
+- The `.next` cache is clear, waiting for the developer to restart the local dev server.
 
 ## Next session starts with
 
-- Push the latest `package.json` and `package-lock.json` changes to the main branch to trigger the live deployment and verify production functionality.
+- Restart the local development server (`npm run dev`) and hard refresh the browser to verify the Stripe checkout flow successfully initiates and completes in test mode.
+- Test the Job Details flow from the Saved Jobs page to verify the caching logic resolves the job correctly.
 
 ## Open questions
 
-- None. JobPilot MVP is complete.
+- Are there any other webhooks or database listener updates required to process the successful Stripe subscription event once the user checks out?

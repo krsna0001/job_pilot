@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { createInsforgeServer } from "../../lib/insforge-server";
 import AuthenticatedHeader from "../components/AuthenticatedHeader";
 
@@ -34,6 +35,10 @@ export default async function SalaryInsightsPage() {
   const insforge = await createInsforgeServer();
   const { data, error } = await insforge.auth.getCurrentUser();
   const user = data?.user;
+
+  if (!user) {
+    redirect("/login");
+  }
 
   let salaryJobs: SavedJobRow[] = [];
   let roleGroups: Record<string, { salaries: { min: number; max: number }[]; count: number }> = {};

@@ -11,12 +11,22 @@ export default function PricingClient() {
     setLoading(true);
     setError(null);
     try {
+      const { data: userData, error: userError } = await insforge.auth.getUser();
+      if (userError || !userData?.user) {
+        throw new Error("You must be logged in to upgrade.");
+      }
+
       // Create a Stripe checkout session via InsForge
       const { data, error: apiError } = await insforge.payments.createCheckoutSession("test", {
         mode: "subscription",
         lineItems: [{ stripePriceId: "price_premium_tier_123", quantity: 1 }],
         successUrl: `${window.location.origin}/pricing/success`,
         cancelUrl: `${window.location.origin}/pricing`,
+        subject: {
+          type: "user",
+          id: userData.user.id
+        },
+        customerEmail: userData.user.email
       });
 
       if (apiError) {

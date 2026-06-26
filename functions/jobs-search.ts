@@ -138,6 +138,35 @@ async function fetchArbeitnow(what: string): Promise<NormalizedJob[]> {
   }
 }
 
+async function fetchRemoteOK(what: string): Promise<NormalizedJob[]> {
+  try {
+    const resp = await fetch(`https://remoteok.com/api?tag=${encodeURIComponent(what)}`, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "application/json"
+      }
+    });
+    if (resp.status !== 200) return [];
+    const data = await resp.json();
+    const rawJobs = Array.isArray(data) ? data.slice(1, 11) : [];
+    return rawJobs.map((j: any) => ({
+      id: `remoteok-${j.id}`,
+      title: j.position as string,
+      company: { display_name: j.company as string },
+      location: { display_name: j.location as string || "Remote" },
+      description: j.description as string ?? "",
+      salary_min: j.salary_min || undefined,
+      salary_max: j.salary_max || undefined,
+      redirect_url: j.apply_url || j.url || "",
+      created: j.date || new Date(j.epoch * 1000).toISOString(),
+      adref: `remoteok-${j.id}`,
+      source: "RemoteOK",
+    }));
+  } catch {
+    return [];
+  }
+}
+
 function mockFallback(what: string): NormalizedJob[] {
   const query = what.toLowerCase().trim();
   return MOCK_JOBS.filter(
@@ -183,21 +212,26 @@ export default async function handler(req: Request): Promise<Response> {
   if (!ADZUNA_APP_ID || !ADZUNA_API_KEY) {
     console.log("[DEBUG] Adzuna API credentials not configured. Serving mock + global job fallback.");
     const mockResults = mockFallback(what);
-    const [remotive, arbeitnow] = await Promise.all([fetchRemotive(what), fetchArbeitnow(what)]);
-    const merged = deduplicate([...mockResults, ...remotive, ...arbeitnow]);
+    const [remotive, arbeitnow, remoteok] = await Promise.all([
+      fetchRemotive(what),
+      fetchArbeitnow(what),
+      fetchRemoteOK(what),
+    ]);
+    const merged = deduplicate([...mockResults, ...remotive, ...arbeitnow, ...remoteok]);
     return new Response(
       JSON.stringify({ results: merged, count: merged.length }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
 
-  const [adzunaResult, remotive, arbeitnow] = await Promise.all([
+  const [adzunaResult, remotive, arbeitnow, remoteok] = await Promise.all([
     fetchAdzuna(what, where, page, country, resultsPerPage),
     page === "1" ? fetchRemotive(what) : Promise.resolve([] as NormalizedJob[]),
     page === "1" ? fetchArbeitnow(what) : Promise.resolve([] as NormalizedJob[]),
+    page === "1" ? fetchRemoteOK(what) : Promise.resolve([] as NormalizedJob[]),
   ]);
 
-  const allResults = deduplicate([...adzunaResult.results, ...remotive, ...arbeitnow]);
+  const allResults = deduplicate([...adzunaResult.results, ...remotive, ...arbeitnow, ...remoteok]);
   
   // Always sort recent listings to the top
   allResults.sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());

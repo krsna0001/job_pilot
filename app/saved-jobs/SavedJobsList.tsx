@@ -241,7 +241,7 @@ export default function SavedJobsList({ initialJobs }: { initialJobs: SavedJob[]
                         key={job.id}
                         className="rounded-lg border border-border bg-surface-muted p-3 space-y-2.5 hover:shadow-sm transition-all duration-200 cursor-pointer"
                       >
-                        <Link href={`/find-jobs/${job.id}`} className="block space-y-1.5">
+                        <Link href={`/find-jobs/${job.job_data.id}`} className="block space-y-1.5">
                           <div className="flex items-start justify-between gap-2">
                             <p className="text-sm font-semibold text-text-darkest leading-snug line-clamp-2">
                               {job.job_data.title}
@@ -295,7 +295,7 @@ export default function SavedJobsList({ initialJobs }: { initialJobs: SavedJob[]
             >
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="min-w-0 flex-1">
-                  <Link href={`/find-jobs/${job.id}`} className="block">
+                  <Link href={`/find-jobs/${job.job_data.id}`} className="block">
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="text-base font-semibold text-text-darkest hover:text-accent transition-colors">{job.job_data.title}</h3>
                       <MatchScoreBadge score={job.match_score} />

@@ -15,6 +15,7 @@ export interface Job {
   redirect_url: string;
   created: string;
   adref: string;
+  source?: string;
 }
 
 interface JobCardProps {
@@ -104,7 +105,7 @@ export default function JobCard({
           rel="noopener noreferrer"
           className="ml-auto font-medium text-accent transition hover:text-accent-dark"
         >
-          View on Adzuna →
+          View on {job.source || "Adzuna"} →
         </a>
       </div>
     </div>

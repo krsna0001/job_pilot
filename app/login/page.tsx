@@ -13,6 +13,7 @@ export default async function LoginPage({ searchParams }: { searchParams: { [key
     checkError = Array.isArray(searchParams.error) ? searchParams.error[0] : searchParams.error;
   }
 
+  let shouldRedirect = false;
   try {
     const insforge = await createInsforgeServer();
     const { data, error } = await insforge.auth.getCurrentUser();
@@ -23,11 +24,15 @@ export default async function LoginPage({ searchParams }: { searchParams: { [key
     }
 
     if (data?.user) {
-      redirect("/dashboard");
+      shouldRedirect = true;
     }
   } catch (e) {
     // Preserve existing catch handling for unexpected failures
     console.error("Login page auth check failed:", e);
+  }
+
+  if (shouldRedirect) {
+    redirect("/dashboard");
   }
 
   return (

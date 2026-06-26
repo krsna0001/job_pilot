@@ -3,7 +3,7 @@ import { createInsforgeServer } from "./insforge-server";
 
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPENROUTER_API_KEY,
+  apiKey: process.env.OPENROUTER_API_KEY || "dummy_key",
 });
 
 interface JobInput {

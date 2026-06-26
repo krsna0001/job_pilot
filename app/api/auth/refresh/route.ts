@@ -1,7 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import { cookies } from "next/headers";
+import { refreshAuth } from "@insforge/sdk/ssr";
 
 export async function POST(request: NextRequest) {
-  // This endpoint is called by the InsForge SDK to refresh the session
-  // For now, just return a 200 response - the SDK should handle this
-  return NextResponse.json({ success: true });
+  const cookieStore = cookies();
+  const { response } = await refreshAuth({
+    baseUrl: process.env.NEXT_PUBLIC_INSFORGE_URL!,
+    anonKey: process.env.NEXT_PUBLIC_INSFORGE_ANON_KEY!,
+    cookies: {
+      get: (name) => cookieStore.get(name)?.value ?? null,
+    },
+    request,
+  });
+  return response;
 }

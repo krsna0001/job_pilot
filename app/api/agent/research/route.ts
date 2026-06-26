@@ -7,11 +7,11 @@ import { z } from "zod";
 import { capture } from "@/lib/posthog";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || "dummy_key",
 });
 
 const browserbase = new Browserbase({
-  apiKey: process.env.BROWSERBASE_API_KEY,
+  apiKey: process.env.BROWSERBASE_API_KEY || "dummy_key",
 });
 
 export async function POST(request: NextRequest) {
