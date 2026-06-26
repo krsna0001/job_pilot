@@ -52,9 +52,13 @@ async function runSync() {
   try {
     const res = await fetch("https://remoteok.com/api", {
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "application/json"
-      }
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://remoteok.com/",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+      },
     });
     if (res.ok) {
       const data = await res.json();
@@ -101,6 +105,8 @@ async function runSync() {
         if (error) summary.remoteok.error++;
         else summary.remoteok.success++;
       }
+    } else {
+      console.warn(`RemoteOK returned HTTP ${res.status} — Cloudflare may be blocking the request.`);
     }
   } catch (err) {
     console.error("RemoteOK sync error:", err);
