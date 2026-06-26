@@ -39,20 +39,30 @@ export default function SearchDashboard({
   const [liveScores, setLiveScores] = useState<Record<string, number>>({});
   const [isScoring, setIsScoring] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
+  const [syncError, setSyncError] = useState<string | null>(null);
 
   const handleSyncJobs = async () => {
     setIsSyncing(true);
+    setSyncError(null);
     try {
       const res = await fetch("/api/jobs/sync");
       if (res.ok) {
         await loadDBJobs();
+      } else {
+        setSyncError("Sync partially failed — some sources may be unavailable.");
+        await loadDBJobs();
       }
-    } catch (err) {
-      console.error("Failed to sync jobs:", err);
+    } catch {
+      setSyncError("Could not reach the sync service. Please try again.");
     } finally {
       setIsSyncing(false);
     }
   };
+
+  useEffect(() => {
+    handleSyncJobs();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   // Active Currency Selection
   const getActiveCurrency = () => {
@@ -243,9 +253,20 @@ export default function SearchDashboard({
           </div>
         </div>
 
-        {dbTotalCount > 0 && (
+        {syncError && (
+          <div className="mt-4 rounded-xl bg-error/10 px-4 py-3 text-sm font-medium text-error flex items-center justify-between gap-2">
+            <span>{syncError}</span>
+            <button
+              onClick={handleSyncJobs}
+              className="shrink-0 rounded-lg bg-error/15 px-3 py-1 text-xs font-semibold hover:bg-error/25 transition"
+            >
+              Retry
+            </button>
+          </div>
+        )}
+        {!syncError && dbTotalCount > 0 && (
           <div className="mt-4 rounded-xl bg-[#ecfdf5] px-4 py-3 text-sm font-medium text-[#065f46] flex items-center gap-2">
-            ✨ Found {dbTotalCount} jobs. No high matches yet — try a broader search.
+            Found {dbTotalCount} jobs in your area.
           </div>
         )}
       </div>
