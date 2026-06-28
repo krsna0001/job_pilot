@@ -16,7 +16,12 @@ allowed_redirect_urls = [
   "https://59m666gk.insforge.site/dashboard",
   "https://59m666gk.insforge.site/find-jobs",
   "https://59m666gk.insforge.site/profile",
-  "https://59m666gk.insforge.site/api/auth/callback"
+  "https://59m666gk.insforge.site/api/auth/callback",
+  "https://jobpilot.insforge.site/login",
+  "https://jobpilot.insforge.site/dashboard",
+  "https://jobpilot.insforge.site/find-jobs",
+  "https://jobpilot.insforge.site/profile",
+  "https://jobpilot.insforge.site/api/auth/callback"
 ]
 require_email_verification = true
 verify_email_method = "code"
